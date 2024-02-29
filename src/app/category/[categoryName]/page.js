@@ -1,0 +1,14 @@
+"use client"
+import { useRouter } from "next/router";
+import CategoryBlogsPage from "./categoryPage";
+
+const CategoryPage = ({params}) => {
+
+  const { categoryName } = params;
+  
+  const decodedCategoryName = categoryName ? decodeURIComponent(categoryName) : '';
+
+  return <CategoryBlogsPage selectedCategory={decodedCategoryName} />;
+};
+
+export default CategoryPage;

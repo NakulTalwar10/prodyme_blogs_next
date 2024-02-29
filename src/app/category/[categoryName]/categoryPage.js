@@ -3,17 +3,17 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
-import BlogsBackground from "../components/BlogsBackground";
-import BlogsSidebar from "../components/BlogsSidebar";
+import BlogsBackground from "../../components/BlogsBackground";
+import BlogsSidebar from "../../components/BlogsSidebar";
 
-const BlogsPage = () => {
+const CategoryBlogsPage = ({ selectedCategory }) => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/blogs");
-                const formattedBlogs = response.data.map(blog => ({
+                const formattedBlogs = response.data.filter(blog => blog.categoryname === selectedCategory).map(blog => ({
                     ...blog,
                     posts: blog.posts.map(post => ({
                         ...post,
@@ -29,7 +29,7 @@ const BlogsPage = () => {
             }
         };
         fetchBlogs();
-    }, []);
+    }, [selectedCategory]);
 
     const stripHtmlTags = (html) => {
         const doc = new DOMParser().parseFromString(html, "text/html");
@@ -44,10 +44,8 @@ const BlogsPage = () => {
     return (
         <div className="flex">
             <BlogsSidebar />
-
             <div className="flex-1 overflow-y-auto">
                 <BlogsBackground />
-                
                 <section className="my-5 px-5">
                     {blogs.map((blogItem, index) => (
                         <div key={index}>
@@ -63,7 +61,7 @@ const BlogsPage = () => {
                                                 <div className="relative">
                                                     <div
                                                         className="w-full h-[100px] sm:h-[200px] lg:h-[300px] xl:h-[400px] bg-cover bg-center"
-                                                        style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post.jetpack_featured_media_url || "./images/cardimages.jpg"})` }}
+                                                        style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post.jetpack_featured_media_url || "../images/cardimages.jpg"})` }}
                                                     ></div>
                                                     <div className="absolute inset-0 flex flex-col justify-center items-start text-white px-5">
                                                         <h4 className="text-4xl font-semibold">{post.title}</h4>
@@ -84,7 +82,7 @@ const BlogsPage = () => {
                                                     <img
                                                         alt={post.title}
                                                         className="w-full object-cover h-[200px] w-[100%]"
-                                                        src={post.jetpack_featured_media_url || "./images/cardimages.jpg"}
+                                                        src={post.jetpack_featured_media_url || "../images/cardimages.jpg"}
                                                     />
                                                     <div className="text-small justify-between">
                                                         <h4 className="text-xl font-semibold">{post.title}</h4>
@@ -123,4 +121,5 @@ const BlogsPage = () => {
     );
 };
 
-export default BlogsPage;
+export default CategoryBlogsPage;
+
