@@ -1,40 +1,239 @@
-"use client"
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { load } from "cheerio";
+import * as cheerio from "cheerio";
 
-const BlogsItems = ({ slug }) => {
+import Image from "next/image";
+import SideBarBlogCard from "./sideBarBlogCard";
+import ProductSlider from "../../components/Slider";
+
+const BlogsItems = ({ slug, 
+  category
+ }) => {
   const [blog, setBlog] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [blogContent, setBlogContent] = useState([]);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  // const [category,setCategory]=useState("Aman")
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/blogs");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        // console.log("fetch json : ",jsonData);
+        jsonData?.map((data, index) => {
+          if (data.categoryname === category) {
+            setData(data.posts);
+            console.log("Posts =>",data.posts);
+          }
+        });
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+  }, [blog,category]);
+  // const {slug} =params;
+  // console.log(slug);
+  // for getting sidbar category SideBarBlogCards
   useEffect(() => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `https://public-api.wordpress.com/wp/v2/sites/amansamant23.wordpress.com/posts?_fields=id,slug,title,content&slug=${slug}`
+          `http://localhost:5000/blogs/blog?slug=${slug}`
         );
         setBlog(response.data[0]);
+        // Remove the brackets and quotation marks from the string
+        const cleanedString =
+          response.data[0].meta.reader_suggested_tags.replace(/[\[\]"']/g, "");
+
+        // Split the cleaned string by comma to get an array of individual strings
+        const array = cleanedString.split(",");
+        setTags(array);
+        // console.log(response.data[0]);
       } catch (error) {
         console.error("Error fetching blog:", error);
       }
     };
 
     fetchBlog();
-  }, [slug]);
+  }, []);
 
-  const renderContent = () => {
-    if (!blog) return <p>Loading...</p>;
+  // useeffect for formatting the content into seperate blocks
+  useEffect(() => {
+    if (blog === null) return;
+    const inputString = blog.content.rendered;
+    // Regular expression to match block elements
+    const figureRegex = /<figure\b[^>]*>([\s\S]*?)<\/figure>/g;
 
-   
-    const titleWithoutNbsp = blog.title.rendered.replace(/&nbsp;/g, '');
+    // Split the input string using the figure block regex
+    const parts = inputString.split(/(<figure\b[^>]*>[\s\S]*?<\/figure>)/);
 
-    return (
-      <div className="blog-container">
-        <h4 className=" my-5 underline font-bold text-center">{titleWithoutNbsp}</h4>
-        <div className="text-lg text-gray-700" dangerouslySetInnerHTML={{ __html: blog.content.rendered }} />
-      </div>
-    );
-  };
+    // Filter out empty strings and trim each part
+    const filteredParts = parts.filter((part) => part.trim() !== "");
 
-  return <div className="p-5">{renderContent()}</div>;
+    // Output array to store image and text parts in sequence
+    const outputArray = [];
+
+    // Loop through filtered parts and categorize into image and text
+    filteredParts.forEach((part) => {
+      if (part.includes("<figure")) {
+        outputArray.push({ type: "image", content: part });
+      } else {
+        outputArray.push({ type: "text", content: part });
+      }
+    });
+
+    // Logging the output array
+    // console.log(outputArray);
+    setBlogContent(outputArray);
+  }, [blog]);
+
+  // date formatting function
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    };
+    // console.log(tags[2]);
+    return date.toLocaleDateString("en-US", options);
+  }
+
+
+
+  return (
+    <div>
+      {blog ? (
+        <div>
+          <div className="flex bg-[#F8F8F8]">
+            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0  "></div>
+
+            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] ">
+              <div className="overflow-auto flex flex-col h-[100vh] justify-center gap-2  p-4 font-normal text-left sticky top-0">
+                <span className="text-left text-[16px] font-bold">
+                  Related Blogs
+                </span>
+                <div className="h-px w-[150px] bg-white"></div>
+                {data?.map((post, i) => {
+                  if (i > 10) {
+                    return;
+                  }
+                  return <SideBarBlogCard post={post} key={i} />;
+                })}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="blog-container p-[24px]">
+                <h1 className="font-bold text-[42px] my-3">
+                {blog.title.rendered.replace(/&nbsp;/g, " ")}
+                </h1>
+                <span className="text-[20px] my-3">
+                  {formatDate(blog.date)}
+                </span>
+                <div className="text-[18px] my-3">
+                  <span>Tags:</span>
+                  {tags &&
+                    tags?.map((tag, index) => {
+                      return (
+                        <span
+                          key={index}
+                          className="mx-3 py-1 px-3 border-2 text-[#FF7A34] border-[#FF7A34] bg-white"
+                        >
+                          {tag}
+                        </span>
+                      );
+                    })}
+                </div>
+                {blog.jetpack_featured_media_url !== null ? (
+                  <Image
+                    src={blog.jetpack_featured_media_url}
+                    alt="image"
+                    width={100}
+                    height={100}
+                    className="w-[85vw] h-[400px] object-cover "
+                  />
+                ) : (
+                  <div>insert defalut image</div>
+                )}
+                {blogContent?.map((block, index) => {
+                  if (block.type === "text") {
+                    return (
+                      <div
+                        key={index}
+                        className="blog-container  "
+                        dangerouslySetInnerHTML={{ __html: block.content }}
+                      />
+                    );
+                  } else {
+                    // Regular expression to extract width, height, and src attributes from the img tag
+                    const regex =
+                      /<img[^>]*?width="([^"]*?)"[^>]*?height="([^"]*?)"[^>]*?src="([^"]*?)"/;
+
+                    // Match the regex against the HTML string
+                    const match = block.content.match(regex);
+                    if (match) {
+                      const width = match[1];
+                      const height = match[2];
+                      const imageUrl = match[3];
+                      const aspectRatio = width / height;
+                      // Set default alignment as left
+                      let alignment = "left";
+
+                      // Determine alignment based on aspect ratio
+                      if (aspectRatio > 4 / 3) {
+                        alignment = "right";
+                      }
+                      if (aspectRatio > 6 / 3) {
+                        alignment = "center";
+                      }
+                      return (
+                        <div className="image-container" key={index}>
+                          <div className="clear-both"></div>{" "}
+                          {/* Add this div to clear floating */}
+                          <Image
+                            src={imageUrl}
+                            alt="Your Image"
+                            width={parseInt(width)}
+                            height={parseInt(height)}
+                            // layout="intrinsic"
+                            className={`m-3 ${
+                              alignment === "left"
+                                ? "float-left h-[450px] w-auto ml-0"
+                                : alignment === "right"
+                                ? "float-right w-[450px] h-auto mr-0"
+                                : "mx-auto w-[85vw] h-auto"
+                            }`}
+                          />
+                        </div>
+                      );
+                    } else {
+                      return <div key={index}>Put Defalut Image here</div>;
+                    }
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <ProductSlider 
+            category={category} tags={tags}
+             />
+          </div>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
 };
-
 export default BlogsItems;

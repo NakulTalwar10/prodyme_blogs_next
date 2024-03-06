@@ -25,7 +25,7 @@ const BlogsSidebar = () => {
       <div className="fixed">
         <div>
           <h3 className="text-white text-lg mt-20 text-center">Category Tree</h3>
-          <hr className="mt-4" />
+          <hr className="mt-4 mx-4" />
         </div>
 
         <div className="px-2">
