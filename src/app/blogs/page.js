@@ -99,7 +99,6 @@ const BlogsPage = () => {
         </div>
 
         <section className="my-5 px-5">
-          {/* Conditionally render search results if there is a search query */}
           {searchQuery ? (
             <div>
               <div className="flex items-center">
@@ -147,7 +146,6 @@ const BlogsPage = () => {
               </div>
             </div>
           ) : (
-            /* Render all current categories if there is no search query */
             <>
               {currentCategories.map((blogItem, index) => (
                 <div key={index}>

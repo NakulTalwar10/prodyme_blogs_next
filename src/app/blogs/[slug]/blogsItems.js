@@ -1,4 +1,6 @@
 "use client";
+
+// WILL NEED TO UPDATE THE CODE FOR MANAGING SUBCATEGORIES LATER
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { load } from "cheerio";
@@ -8,16 +10,17 @@ import Image from "next/image";
 import SideBarBlogCard from "./sideBarBlogCard";
 import ProductSlider from "../../components/Slider";
 
-const BlogsItems = ({ slug, 
-  category
- }) => {
+const BlogsItems = ({ slug}) => {
   const [blog, setBlog] = useState(null);
+  const [userTags, setUserTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [blogContent, setBlogContent] = useState([]);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  // const [category,setCategory]=useState("Aman")
+  const [category, setCategory] = useState(null);
 
+  // setting the blogs for side bar
+  // NEED TO UPDATE THE API IN BACKEND AND THE FETCH HERE. IT IS FETCHING ALL THE POSTS AND SEPERATED IN DIFFERENT CATEGORIES OBJECT. SHOULD ONLY GET A LIMITED POSTS OF A PARTICULAR CATEGORY THAT IS BEING PASSED.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,23 +29,73 @@ const BlogsItems = ({ slug,
           throw new Error("Network response was not ok");
         }
         const jsonData = await response.json();
-        // console.log("fetch json : ",jsonData);
-        jsonData?.map((data, index) => {
-          if (data.categoryname === category) {
-            setData(data.posts);
-            console.log("Posts =>",data.posts);
-          }
-        });
+
+        // Filter out only the categories that match the desired category
+        const filteredData = jsonData?.filter(
+          (data) => data.categoryname === category
+        );
+
+        // Flatten the array of posts and remove the post with the matching ID
+        const filteredPosts = filteredData?.flatMap((data) =>
+          data.posts.filter((post) => post.id !== blog.id)
+        );
+
+        setData(filteredPosts);
+        console.log(filteredPosts);
+        setData(filteredPosts);
       } catch (error) {
         setError(error.message);
       }
     };
 
-    fetchData();
-  }, [blog,category]);
+    if(category!== null){
+      fetchData();
+    }
+  }, [category]);
   // const {slug} =params;
   // console.log(slug);
   // for getting sidbar category SideBarBlogCards
+
+// setting category and tags
+useEffect(() => {
+  const fetchCategory = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/blogs/categories?categoryId=${blog.categories[0]}`
+      );
+      setCategory(response.data);
+      console.log(response.data)
+    } catch (error) {
+      console.error("Error fetching blog:", error);
+    }
+  }
+
+  const fetchTags = async () => {
+    const joinedTags = blog.tags.join(',')
+    console.log("jjjtags", joinedTags);
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/blogs/tags?tagsId=${joinedTags}`
+      );
+      setTags(response.data);
+      console.log("tags name getting ",response.data);
+    } catch (error) {
+      console.error("Error fetching blog:", error);
+    }
+  };
+
+  if(blog!==null){
+    fetchTags();
+    fetchCategory();
+  }
+
+},[blog])
+
+
+
+
+
+  // setting Blog data and userTags state
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -56,7 +109,7 @@ const BlogsItems = ({ slug,
 
         // Split the cleaned string by comma to get an array of individual strings
         const array = cleanedString.split(",");
-        setTags(array);
+        setUserTags(array);
         // console.log(response.data[0]);
       } catch (error) {
         console.error("Error fetching blog:", error);
@@ -105,11 +158,9 @@ const BlogsItems = ({ slug,
       day: "numeric",
       year: "numeric",
     };
-    // console.log(tags[2]);
+    // console.log(userTags[2]);
     return date.toLocaleDateString("en-US", options);
   }
-
-
 
   return (
     <div>
@@ -119,11 +170,11 @@ const BlogsItems = ({ slug,
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0  "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] ">
-              <div className="overflow-auto flex flex-col h-[100vh] justify-center gap-2  p-4 font-normal text-left sticky top-0">
+              <div className="overflow-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0">
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
-                <div className="h-px w-[150px] bg-white"></div>
+                <div className=" w-[150px] bg-white border border-white"></div>
                 {data?.map((post, i) => {
                   if (i > 10) {
                     return;
@@ -135,15 +186,15 @@ const BlogsItems = ({ slug,
             <div className="flex flex-col">
               <div className="blog-container p-[24px]">
                 <h1 className="font-bold text-[42px] my-3">
-                {blog.title.rendered.replace(/&nbsp;/g, " ")}
+                  {blog.title.rendered.replace(/&nbsp;/g, " ")}
                 </h1>
                 <span className="text-[20px] my-3">
                   {formatDate(blog.date)}
                 </span>
                 <div className="text-[18px] my-3">
-                  <span>Tags:</span>
-                  {tags &&
-                    tags?.map((tag, index) => {
+                  <span>userTags:</span>
+                  {userTags &&
+                    userTags?.map((tag, index) => {
                       return (
                         <span
                           key={index}
@@ -225,9 +276,7 @@ const BlogsItems = ({ slug,
             </div>
           </div>
           <div className="">
-            <ProductSlider 
-            category={category} tags={tags}
-             />
+            <ProductSlider category={category} tags={tags} />
           </div>
         </div>
       ) : (

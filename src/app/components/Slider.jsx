@@ -13,19 +13,20 @@ import axios from "axios";
 
 const ProductSlider = (
   {
-    // category, tags
+    category, tags
   }
 ) => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("Kitchen");
-  const [tags, setTags] = useState([
-    "Single Compartment Sink",
-    "Hose faucet",
-    "Kitchen Basin"
-  ]);
+  // const [category, setCategory] = useState("Kitchen");
+  // const [tags, setTags] = useState([
+  //   "Single Compartment Sink",
+  //   "Hose faucet",
+  //   "Kitchen Basin"
+  // ]);
 
   useEffect(() => {
     fetchData();
+    console.log(tags)
   }, [category, tags]);
 
   const fetchData = async () => {
@@ -57,7 +58,7 @@ const ProductSlider = (
       <Swiper
         // install Swiper modules
         modules={[Navigation]}
-        spaceBetween={0}
+        spaceBetween={5}
         slidesPerView={5}
         navigation
         onSwiper={(swiper) => console.log(swiper)}

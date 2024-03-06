@@ -4,13 +4,11 @@ import React from "react";
 import BlogsItems from "./blogsItems";
 
 const Blogs = ({params}) => {
-  const {slug,categoryname}= params
-
-  console.log("Sluggg =>",slug);
-  console.log("categorynameeee =>",categoryname);
+  const {slug}= params
+  
     return (
         <main>
-            <BlogsItems slug={slug} category={categoryname} />
+            <BlogsItems slug={slug} />
         </main>
     );
 };
