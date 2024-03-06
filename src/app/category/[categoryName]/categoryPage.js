@@ -147,7 +147,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                         <p className="pr-[30%] text-white text-2xl font-semibold my-2">
                                                             {stripHtmlTags(post.excerpt).substring(0, 250)}...
                                                         </p>
-                                                        <Link href="/[slug]" as={"blogs/" + post.slug}>
+                                                        <Link href="/blogs/[slug]" as={`/blogs/${post.slug}`}>
                                                             <button className="text-orange-400 text-[20px] font-bold flex justify-center items-center">
                                                                 <span className="hover:mr-2">Read More</span>
                                                                 <FaArrowRightLong className="transition-transform ease-in-out duration-300 ml-1 " />
@@ -171,7 +171,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                                     <p className="text-gray-600 font-semibold my-2">
                                                                         {stripHtmlTags(post.excerpt).substring(0, 150)}...
                                                                     </p>
-                                                                    <Link href="/[slug]" as={"blogs/" + post.slug}>
+                                                                    <Link href="/blogs/[slug]" as={`/blogs/${post.slug}`}>
                                                                         <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center">
                                                                             <span className="hover:mr-2">Read More</span>
                                                                             <FaArrowRightLong className="transition-transform ease-in-out duration-300 ml-1 " />

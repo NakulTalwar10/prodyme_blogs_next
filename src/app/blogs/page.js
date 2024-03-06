@@ -211,7 +211,7 @@ const BlogsPage = () => {
                                                                     </p>
                                                                     <Link
                                                                         href="/[slug]"
-                                                                        as={`/blogs/${post.slug}?categoryname=${blogItem.categoryname}`}
+                                                                        as={`/blogs/${post.slug} ${blogItem.categoryname}`}
                                                                     >
                                                                         <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center">
                                                                             <span className="hover:mr-2">
