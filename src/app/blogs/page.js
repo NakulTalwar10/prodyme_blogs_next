@@ -65,21 +65,14 @@ const BlogsPage = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  useEffect(() => {
-    const filteredBlogs = blogs.map((blog) => ({
-      ...blog,
-      posts: blog.posts.filter((post) => {
-        const query = typeof searchQuery === 'string' ? searchQuery : '';
-        return post.title.toLowerCase().includes(query.toLowerCase());
-      }),
-    }));
-  
-    const filteredPosts = filteredBlogs.reduce((accumulator, blog) => {
-      return accumulator.concat(blog.posts);
-    }, []);
-  
-    setData(filteredPosts);
-  }, [searchQuery, blogs]);
+  const filteredPosts = blogs.reduce((accumulator, blog) => {
+    const filteredBlogPosts = blog.posts.filter((post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        blog.categoryname.toLowerCase().includes(searchQuery.toLowerCase()) 
+    );
+    return accumulator.concat(filteredBlogPosts);
+}, []);
+
 
   return (
     <div className="flex">
@@ -89,7 +82,7 @@ const BlogsPage = () => {
         <BlogsBackground />
 
         <div className="flex justify-end p-5">
-          <Search setData={setData} setSearchQuery={setSearchQuery}/>
+          <Search  setSearchQuery={setSearchQuery}/>
 
           <Paginations
             totalCategories={blogs.length}
@@ -106,7 +99,7 @@ const BlogsPage = () => {
                 <hr className="border flex-grow border-black" />
               </div>
               <div className="grid grid-cols-3 gap-5">
-                {data.map((post, index) => (
+                {filteredPosts.map((post, index) => (
                   <div key={index} className="my-5">
                     <img
                       alt={post.title}
@@ -117,15 +110,15 @@ const BlogsPage = () => {
                       }
                     />
                     <div className="text-small justify-between">
-                      <h4 className="text-xl font-semibold">{post.title.rendered}</h4>
+                      <h4 className="text-xl font-semibold">{post.title}</h4>
                       <p className="text-default-500">
                         {formatDate(post.date)}
                       </p>
                       <div>
-                        {stripHtmlTags(post.content.rendered).length > 50 ? (
+                        {stripHtmlTags(post.content).length > 50 ? (
                           <div>
                             <p className="text-gray-600 font-semibold my-2">
-                              {stripHtmlTags(post.excerpt.rendered).substring(0, 150)}...
+                              {stripHtmlTags(post.excerpt).substring(0, 150)}...
                             </p>
                             <Link href="/[slug]" as={"blogs/" + post.slug}>
                               <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center">
@@ -136,7 +129,7 @@ const BlogsPage = () => {
                           </div>
                         ) : (
                           <p className="text-gray-600">
-                            {stripHtmlTags(post.excerpt.rendered)}
+                            {stripHtmlTags(post.excerpt)}
                           </p>
                         )}
                       </div>

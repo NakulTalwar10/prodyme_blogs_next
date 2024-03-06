@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = ({ setData ,setSearchQuery}) => {
+const Search = ({ setSearchQuery}) => {
   const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ const Search = ({ setData ,setSearchQuery}) => {
       .then((data) => {
         // Handle the retrieved data
         console.log("search data =>",data);
-        setData(data)
+       
       })
       .catch((error) => {
         // Handle any errors that occur during the fetch operation
