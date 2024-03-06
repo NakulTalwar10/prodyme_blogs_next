@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = ({ setData }) => {
+const Search = ({ setData ,setSearchQuery}) => {
   const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
@@ -10,6 +10,7 @@ const Search = ({ setData }) => {
   };
 
   const handleSearch = async () => {
+    setSearchQuery(query)
     // Fetch data from the API
     fetch(`http://localhost:5000/blogs/search?searchInput=${query}`)
       .then((response) => {
@@ -20,7 +21,7 @@ const Search = ({ setData }) => {
       })
       .then((data) => {
         // Handle the retrieved data
-        console.log(data);
+        console.log("search data =>",data);
         setData(data)
       })
       .catch((error) => {
