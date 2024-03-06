@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 } */
+.scroll-container ::-webkit-scrollbar{
+  width: 0;
+  background: transparent;
+}

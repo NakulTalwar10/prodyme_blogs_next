@@ -18,7 +18,7 @@ const BlogsPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/blogs");
+        const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
         const formattedBlogs = response.data.map((blog) => ({
           ...blog,
           posts: blog.posts.map((post) => ({

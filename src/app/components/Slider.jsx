@@ -31,7 +31,7 @@ const ProductSlider = (
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/products?category=${category}&tags=${tags.join(",")}`);
+      const response = await axios.get(`https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/products?category=${category}&tags=${tags.join(",")}`);
       const data = response.data;
       console.log("Data Log :",response.data)
       

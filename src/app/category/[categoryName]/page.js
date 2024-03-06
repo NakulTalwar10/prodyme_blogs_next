@@ -1,5 +1,4 @@
 "use client"
-import { useRouter } from "next/router";
 import CategoryBlogsPage from "./categoryPage";
 
 const CategoryPage = ({params}) => {

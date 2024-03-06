@@ -24,7 +24,7 @@ const BlogsItems = ({ slug}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/blogs");
+        const response = await fetch("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -61,7 +61,7 @@ useEffect(() => {
   const fetchCategory = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/blogs/categories?categoryId=${blog.categories[0]}`
+        `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/categories?categoryId=${blog.categories[0]}`
       );
       setCategory(response.data);
       console.log(response.data)
@@ -75,7 +75,7 @@ useEffect(() => {
     console.log("jjjtags", joinedTags);
     try {
       const response = await axios.get(
-        `http://localhost:5000/blogs/tags?tagsId=${joinedTags}`
+        `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/tags?tagsId=${joinedTags}`
       );
       setTags(response.data);
       console.log("tags name getting ",response.data);
@@ -100,7 +100,7 @@ useEffect(() => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/blogs/blog?slug=${slug}`
+          `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/blog?slug=${slug}`
         );
         setBlog(response.data[0]);
         // Remove the brackets and quotation marks from the string
@@ -170,7 +170,8 @@ useEffect(() => {
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0  "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] ">
-              <div className="overflow-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0">
+              <div className="overflow-y-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe" >
+              
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
@@ -192,7 +193,7 @@ useEffect(() => {
                   {formatDate(blog.date)}
                 </span>
                 <div className="text-[18px] my-3">
-                  <span>userTags:</span>
+                  <span>Tags:</span>
                   {userTags &&
                     userTags?.map((tag, index) => {
                       return (
@@ -211,7 +212,7 @@ useEffect(() => {
                     alt="image"
                     width={100}
                     height={100}
-                    className="w-[85vw] h-[400px] object-cover "
+                    className="w-[85vw] h-[400px] object-cover"
                   />
                 ) : (
                   <div>insert defalut image</div>

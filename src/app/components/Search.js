@@ -12,7 +12,7 @@ const Search = ({ setSearchQuery}) => {
   const handleSearch = async () => {
     setSearchQuery(query)
     // Fetch data from the API
-    fetch(`http://localhost:5000/blogs/search?searchInput=${query}`)
+    fetch(`https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/search?searchInput=${query}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
