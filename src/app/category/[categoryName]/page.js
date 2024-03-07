@@ -1,5 +1,7 @@
-"use client"
+
+import { useParams } from "next/navigation";
 import CategoryBlogsPage from "./categoryPage";
+
 
 const CategoryPage = ({params}) => {
 
