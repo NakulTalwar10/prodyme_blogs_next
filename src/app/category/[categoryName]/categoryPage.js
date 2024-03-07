@@ -8,7 +8,9 @@ import BlogsSidebar from "../../components/BlogsSidebar";
 import Paginations from "../../components/Paginations";
 import Search from "../../components/Search";
 
-const CategoryBlogsPage = ({ selectedCategory }) => {
+
+
+const CategoryBlogsPage = ({selectedCategory}) => {
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
@@ -58,6 +60,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
         const filteredBlogPosts = blog.posts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()));
         return accumulator.concat(filteredBlogPosts);
     }, []);
+    
 
     return (
         <div className="flex">
