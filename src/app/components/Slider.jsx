@@ -13,16 +13,16 @@ import axios from "axios";
 
 const ProductSlider = (
   {
-    category, tags
+    // category, tags
   }
 ) => {
   const [products, setProducts] = useState([]);
-  // const [category, setCategory] = useState("Kitchen");
-  // const [tags, setTags] = useState([
-  //   "Single Compartment Sink",
-  //   "Hose faucet",
-  //   "Kitchen Basin"
-  // ]);
+  const [category, setCategory] = useState("Kitchen");
+  const [tags, setTags] = useState([
+    "Single Compartment Sink",
+    "Hose faucet",
+    "Kitchen Basin"
+  ]);
 
   useEffect(() => {
     fetchData();
@@ -58,19 +58,34 @@ const ProductSlider = (
       <Swiper
         // install Swiper modules
         modules={[Navigation]}
-        spaceBetween={5}
-        slidesPerView={5}
+        spaceBetween={50}
+        slidesPerView={1}
         navigation
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
         className="m-3"
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 100,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 100,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 200,
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 200,
+          }
+        }}
       >
-        {products?.map((product , i) => {
+        {products?.map((product, i) => {
           return (
-            <SwiperSlide
-              className="m-3 justify-center items-center"
-              key={product._id}
-            >
+            <SwiperSlide className="ml-0 " key={product._id}>
               <Card product={product} />
             </SwiperSlide>
           );

@@ -33,7 +33,7 @@ const BlogsSidebar = () => {
             <div key={index}>
 
               <Link href="/category/[categoryName]" as={`/category/${category.categoryname}`}>
-                <button className="text-white text-sm my-2 text-center hover:border-2 hover:border-white hover:rounded-lg w-full p-1">
+                <button className="text-white text-sm my-2 text-center border-black border-2 hover:border-white hover:rounded-lg w-full p-1">
                   {category.categoryname}
                 </button>
               </Link>
