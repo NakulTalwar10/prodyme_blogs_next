@@ -170,7 +170,7 @@ useEffect(() => {
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
-              <div className="overflow-y-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
+              <div className="overflow-y-auto scrollbar-hide flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
