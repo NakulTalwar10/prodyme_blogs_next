@@ -167,11 +167,10 @@ useEffect(() => {
       {blog ? (
         <div>
           <div className="flex bg-[#F8F8F8]">
-            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0  "></div>
+            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
-            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] ">
-              <div className="overflow-y-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe" >
-              
+            <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
+              <div className="overflow-y-auto flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
@@ -185,21 +184,21 @@ useEffect(() => {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="blog-container p-[24px]">
+              <div className="blog-container pl-[12px] object-left">
                 <h1 className="font-bold text-[42px] my-3">
                   {blog.title.rendered.replace(/&nbsp;/g, " ")}
                 </h1>
                 <span className="text-[20px] my-3">
                   {formatDate(blog.date)}
                 </span>
-                <div className="text-[18px] my-3">
-                  <span>Tags:</span>
+                <div className="text-[18px] flex flex-wrap my-3">
+                  <span className="my-2">Tags:</span>
                   {userTags &&
                     userTags?.map((tag, index) => {
                       return (
                         <span
                           key={index}
-                          className="mx-3 py-1 px-3 border-2 text-[#FF7A34] border-[#FF7A34] bg-white"
+                          className="mx-3 py-1 px-3 border-2 my-2 text-[#FF7A34] border-[#FF7A34] bg-white"
                         >
                           {tag}
                         </span>
@@ -208,11 +207,14 @@ useEffect(() => {
                 </div>
                 {blog.jetpack_featured_media_url !== null ? (
                   <Image
-                    src={blog.jetpack_featured_media_url}
+                    src={
+                      blog.jetpack_featured_media_url ||
+                      "../images/cardimages.jpg"
+                    }
                     alt="image"
                     width={100}
                     height={100}
-                    className="w-[85vw] h-[400px] object-cover"
+                    className="w-[75vw] h-[400px] object-cover"
                   />
                 ) : (
                   <div>insert defalut image</div>
@@ -222,7 +224,7 @@ useEffect(() => {
                     return (
                       <div
                         key={index}
-                        className="blog-container  "
+                        className="blog-container w-[75vw] text-left  "
                         dangerouslySetInnerHTML={{ __html: block.content }}
                       />
                     );
@@ -249,11 +251,11 @@ useEffect(() => {
                         alignment = "center";
                       }
                       return (
-                        <div className="image-container" key={index}>
+                        <div className="image-container w-[80vw]" key={index}>
                           <div className="clear-both"></div>{" "}
                           {/* Add this div to clear floating */}
                           <Image
-                            src={imageUrl}
+                            src={imageUrl || "../images/cardimages.jpg"}
                             alt="Your Image"
                             width={parseInt(width)}
                             height={parseInt(height)}
@@ -263,13 +265,13 @@ useEffect(() => {
                                 ? "float-left h-[450px] w-auto ml-0"
                                 : alignment === "right"
                                 ? "float-right w-[450px] h-auto mr-0"
-                                : "mx-auto w-[85vw] h-auto"
+                                : "mx-auto w-[75vw] h-auto float-left"
                             }`}
                           />
                         </div>
                       );
                     } else {
-                      return <div key={index}>Put Defalut Image here</div>;
+                      // return <div key={index}>Put Defalut Image here</div>;
                     }
                   }
                 })}
@@ -278,6 +280,20 @@ useEffect(() => {
           </div>
           <div className="">
             <ProductSlider category={category} tags={tags} />
+          </div>
+          <div className="bg-[#2A2A2A] flex flex-col  w-[100vw] text-[#F4F4F4] lg:hidden ">
+            <div className="overflow-y-auto flex flex-col justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
+              <span className="text-left text-[16px] font-bold">
+                Related Blogs
+              </span>
+              <div className=" w-[150px] bg-white border border-white"></div>
+              {data?.map((post, i) => {
+                if (i > 10) {
+                  return;
+                }
+                return <SideBarBlogCard post={post} key={i} />;
+              })}
+            </div>
           </div>
         </div>
       ) : (

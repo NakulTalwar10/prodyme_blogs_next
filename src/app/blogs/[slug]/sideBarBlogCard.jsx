@@ -11,7 +11,7 @@ const SideBarBlogCard = ({post}) => {
       <Image
         width={1000}
         height={1000}
-        src={post.jetpack_featured_media_url}
+        src={post.jetpack_featured_media_url || "../images/cardimages.jpg"}
         alt="image"
         className="object-cover w-[150px] h-[65px] my-1"
       />
