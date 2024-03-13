@@ -8,7 +8,7 @@ const BlogsSidebar = ({ isVisible, toggleSidebar }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+      const response = await axios.get("http://localhost:5000/blogs");
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -20,7 +20,7 @@ const BlogsSidebar = ({ isVisible, toggleSidebar }) => {
   }, []);
 
   return (
-    <div className={`bg-black w-40 md:w-60 min-h-screen flex flex-col justify-start items-center md:block ${isVisible ? 'visible' : 'hidden'}`}>
+    <div className={`bg-black w-36 md:w-48 px-5 min-h-screen flex flex-col justify-start items-center md:block ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="fixed z-10">
         <h3 className="text-white text-md lg:text-xl mt-10 md:mt-20 text-center">Category Tree</h3>
         <hr className="mt-4 mx-4" />
