@@ -7,6 +7,7 @@ import BlogsBackground from "../components/BlogsBackground";
 import BlogsSidebar from "../components/BlogsSidebar";
 import Search from "../components/Search";
 import Paginations from "../components/Paginations";
+import url from "../../url";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,7 +19,7 @@ const BlogsPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+        const response = await axios.get(`${url.apiUrl}/blogs`);
         const formattedBlogs = response.data.map((blog) => ({
           ...blog,
           posts: blog.posts.map((post) => ({

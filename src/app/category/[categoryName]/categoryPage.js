@@ -7,6 +7,7 @@ import BlogsBackground from "../../components/BlogsBackground";
 import BlogsSidebar from "../../components/BlogsSidebar";
 import Paginations from "../../components/Paginations";
 import Search from "../../components/Search";
+import url from "../../../url";
 
 
 
@@ -20,7 +21,7 @@ const CategoryBlogsPage = ({selectedCategory}) => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+                const response = await axios.get(`${url.apiUrl}/blogs`);
                 const formattedBlogs = response.data.filter(blog => blog.categoryname === selectedCategory).map(blog => ({
                     ...blog,
                     posts: blog.posts.map(post => ({
@@ -89,7 +90,7 @@ const CategoryBlogsPage = ({selectedCategory}) => {
                                     <div key={index} className="my-5">
                                         <img
                                             alt={post.title}
-                                            className="w-full object-cover h-[200px] w-[100%]"
+                                            className="w-full object-cover h-[200px]"
                                             src={post.jetpack_featured_media_url || "../images/cardimages.jpg"}
                                         />
                                         <div className="text-small justify-between">
