@@ -10,19 +10,20 @@ import "swiper/css/navigation";
 import Card from "./card/Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import url from "../../url";
 
 const ProductSlider = (
   {
-    // category, tags
+    category, tags
   }
 ) => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("Kitchen");
-  const [tags, setTags] = useState([
-    "Single Compartment Sink",
-    "Hose faucet",
-    "Kitchen Basin"
-  ]);
+  // const [category, setCategory] = useState("Kitchen");
+  // const [tags, setTags] = useState([
+  //   "Single Compartment Sink",
+  //   "Hose faucet",
+  //   "Kitchen Basin"
+  // ]);
 
   useEffect(() => {
     fetchData();
@@ -31,7 +32,7 @@ const ProductSlider = (
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/products?category=${category}&tags=${tags.join(",")}`);
+      const response = await axios.get(`${url.apiUrl}/products?category=${category}&tags=${tags.join(",")}`);
       const data = response.data;
       console.log("Data Log :",response.data)
       

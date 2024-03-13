@@ -9,10 +9,11 @@ import * as cheerio from "cheerio";
 import Image from "next/image";
 import SideBarBlogCard from "./sideBarBlogCard";
 import ProductSlider from "../../components/Slider";
+import url from "../../../url";
 
 const BlogsItems = ({ slug}) => {
   const [blog, setBlog] = useState(null);
-  const [userTags, setUserTags] = useState([]);
+  // const [userTags, setUserTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [blogContent, setBlogContent] = useState([]);
   const [data, setData] = useState(null);
@@ -24,7 +25,7 @@ const BlogsItems = ({ slug}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+        const response = await fetch(`${url.apiUrl}/blogs`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -61,7 +62,7 @@ useEffect(() => {
   const fetchCategory = async () => {
     try {
       const response = await axios.get(
-        `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/categories?categoryId=${blog.categories[0]}`
+        `${url.apiUrl}/blogs/categories?categoryId=${blog.categories[0]}`
       );
       setCategory(response.data);
       console.log(response.data)
@@ -75,7 +76,7 @@ useEffect(() => {
     console.log("jjjtags", joinedTags);
     try {
       const response = await axios.get(
-        `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/tags?tagsId=${joinedTags}`
+        `${url.apiUrl}/blogs/tags?tagsId=${joinedTags}`
       );
       setTags(response.data);
       console.log("tags name getting ",response.data);
@@ -100,7 +101,7 @@ useEffect(() => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/blog?slug=${slug}`
+          `${url.apiUrl}/blogs/blog?slug=${slug}`
         );
         setBlog(response.data[0]);
         // Remove the brackets and quotation marks from the string
@@ -108,8 +109,8 @@ useEffect(() => {
           response.data[0].meta.reader_suggested_tags.replace(/[\[\]"']/g, "");
 
         // Split the cleaned string by comma to get an array of individual strings
-        const array = cleanedString.split(",");
-        setUserTags(array);
+        // const array = cleanedString.split(",");
+        // setUserTags(array);
         // console.log(response.data[0]);
       } catch (error) {
         console.error("Error fetching blog:", error);
@@ -193,8 +194,8 @@ useEffect(() => {
                 </span>
                 <div className="text-[18px] flex flex-wrap my-3">
                   <span className="my-2">Tags:</span>
-                  {userTags &&
-                    userTags?.map((tag, index) => {
+                  {tags &&
+                    tags?.map((tag, index) => {
                       return (
                         <span
                           key={index}
