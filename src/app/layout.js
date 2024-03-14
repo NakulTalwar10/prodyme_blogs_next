@@ -1,7 +1,7 @@
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from './components/header/index'
-import BlogsSidebar from "./components/BlogsSidebar";
+import Footer from './components/Footer/index'
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const roboto = Roboto({
@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
       
       {children}
       
+      <Footer/>
       </body>
     </html>
   );
