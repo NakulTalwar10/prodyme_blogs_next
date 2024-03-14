@@ -26,7 +26,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                     ...blog,
                     posts: blog.posts.map(post => ({
                         ...post,
-                        title: post.title ? (post.title.rendered ? post.title.rendered.replace(/&#8217;/g, " "): "") : "",
+                        title: post.title ? (post.title.rendered ) : "",
                         content: post.content ? (post.content.rendered ? post.content.rendered : "") : "",
                         excerpt: post.excerpt ? (post.excerpt.rendered ? post.excerpt.rendered : "") : ""
                     })),
@@ -97,7 +97,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                             src={post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"}
                                         />
                                         <div className="text-small justify-between">
-                                            <h4 className="text-xl font-semibold">{post.title}</h4>
+                                            <h4 className="text-xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
                                             <p className="text-default-500">{formatDate(post.date)}</p>
                                             <div>
                                                 {stripHtmlTags(post.excerpt).length > 50 ? (
@@ -142,7 +142,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                                 style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"})` }}
                                                             ></div>
                                                             <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
-                                                                <h4 className="text-xl lg:text-4xl font-semibold">{post.title}</h4>
+                                                                <h4 className="text-xl lg:text-4xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
                                                                 <p className="lg:text-white text-default-500">{formatDate(post.date)}</p>
                                                                 <p className="lg:pr-[30%]  text-gray-600 lg:text-white lg:text-2xl font-semibold my-2">
                                                                     {stripHtmlTags(post.excerpt).substring(0, 250)}...
@@ -163,7 +163,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                                 src={post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"}
                                                             />
                                                             <div className="text-small justify-between">
-                                                                <h4 className="text-xl font-semibold">{post.title}</h4>
+                                                                <h4 className="text-xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
                                                                 <p className="text-default-500">{formatDate(post.date)}</p>
                                                                 <div className="">
                                                                     {stripHtmlTags(post.excerpt).length > 150 ? (

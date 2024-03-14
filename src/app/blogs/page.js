@@ -27,8 +27,6 @@ const BlogsPage = () => {
             ...post,
             title: post.title
               ? post.title.rendered
-                ? post.title.rendered.replace(/&#8217;/g, " ")
-                : ""
               : "",
             content: post.content
               ? post.content.rendered
@@ -107,19 +105,19 @@ const BlogsPage = () => {
                 <h2 className="mr-2 text-xl font-bold">Search Results</h2>
                 <hr className="border flex-grow border-black" />
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1  lg:grid-cols-3 gap-5">
                 {filteredPosts.map((post, index) => (
                   <div key={index} className="my-5">
                     <img
                       alt={post.title}
                       className="w-full object-cover h-[200px] "
                       src={
-                        post?.acf?.thumbnail?.url  ||
+                        post?.acf?.thumbnail?.url ||
                         "./images/cardimages.jpg"
                       }
                     />
                     <div className="text-small justify-between">
-                      <h4 className="text-xl font-semibold">{post.title}</h4>
+                      <h4 className="text-xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
                       <p className="text-default-500">
                         {formatDate(post.date)}
                       </p>
@@ -175,8 +173,7 @@ const BlogsPage = () => {
                                 }}
                               ></div>
                               <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
-                                <h4 className="text-xl  lg:text-4xl font-semibold">
-                                  {post.title}
+                                <h4 className="text-xl  lg:text-4xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}>
                                 </h4>
                                 <p className="lg:text-white text-default-500">
                                   {formatDate(post.date)}

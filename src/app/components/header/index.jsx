@@ -13,6 +13,7 @@ import Auth from '../Auth/Auth'
 import axios from "axios";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
         right: -3,
@@ -39,12 +40,8 @@ const navPages = [
 
 const Header = ({ dis }) => {
     const [isMobile, setIsMobile] = useState(false);
-    const [category, setCategory] = useState([]);
-    const [display, setDisplay] = useState(dis);
-    const [load, setLoad] = useState(false);
-    const [productname, setProductName] = useState("");
-    const [categoryname, setCategoryName] = useState("");
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
+    const [authMenuAnchorEl, setAuthMenuAnchorEl] = useState(null);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -67,29 +64,38 @@ const Header = ({ dis }) => {
                 }
             }).then(response => {
                 setUser(response.data)
+                
             }).catch(error => {
                 console.error('Error fetching user data:', error);
             });
         }
     }, []);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleUserMenuClick = (event) => {
+        setUserMenuAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleUserMenuClose = () => {
+        setUserMenuAnchorEl(null);
+    };
+
+    const handleAuthMenuClick = (event) => {
+        setAuthMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleAuthMenuClose = () => {
+        setAuthMenuAnchorEl(null);
     };
 
     const handleLogout = () => {
         localStorage.removeItem('token')
         setUser(null)
-        setAnchorEl(null)
+        setUserMenuAnchorEl(null)
     }
 
     return (
         <div>
-            <section className="topBar p-5 fixed top-0 w-full bg-white z-50">
+            <section className="topBar p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
                 <section className="justify-between flex flex-wrap items-center">
                     <div className="flex  items-center">
                         <Link href="/">
@@ -108,42 +114,43 @@ const Header = ({ dis }) => {
                                 </nav>
                             </>
                         )}
-                        {isMobile && (
+                       
+
+                    </div>
+                     {isMobile && (
                             <div className="flex ">
                                 {user ? (
                                     <>
 
-                                        <IconButton onClick={handleClick}>
+                                        <IconButton onClick={handleUserMenuClick}>
                                             <AccountCircleOutlinedIcon />
                                         </IconButton>
                                         <Menu
-                                            anchorEl={anchorEl}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
+                                            anchorEl={userMenuAnchorEl}
+                                            open={Boolean(userMenuAnchorEl)}
+                                            onClose={handleUserMenuClose}
                                         >
-                                            <MenuItem onClick={handleClose}>{user.fullname}</MenuItem>
+                                            <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
                                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                         </Menu>
 
                                     </>
                                 ) : (
                                     <>
-                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleClick}>
+                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
                                             Login / Sign Up
                                         </button>
                                         <Menu
-                                            anchorEl={anchorEl}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
+                                            anchorEl={authMenuAnchorEl}
+                                            open={Boolean(authMenuAnchorEl)}
+                                            onClose={handleAuthMenuClose}
                                         >
-                                            <Auth />
+                                            <Auth updateUser={setUser} />
                                         </Menu>
                                     </>
                                 )}
                             </div>
                         )}
-
-                    </div>
                     {isMobile && (
                         <>
                             <nav className="flex flex-wrap items-center">
@@ -155,6 +162,7 @@ const Header = ({ dis }) => {
                             </nav>
                         </>
                     )}
+                    
                     <div className="flex items-center">
                         <IconButton>
                             <StyledBadge>
@@ -166,41 +174,43 @@ const Header = ({ dis }) => {
                                 <ShoppingCartOutlinedIcon className="text-[#ff7a34] topBarButtons" fontSize="small" />
                             </StyledBadge>
                         </IconButton>
+                        
                         {!isMobile && (
                             <>
                                 {user ? (
                                     <>
                                         <>
-                                            <IconButton onClick={handleClick}>
+                                            <IconButton onClick={handleUserMenuClick}>
                                                 <AccountCircleOutlinedIcon />
                                             </IconButton>
                                             <Menu
-                                                anchorEl={anchorEl}
-                                                open={Boolean(anchorEl)}
-                                                onClose={handleClose}
+                                                anchorEl={userMenuAnchorEl}
+                                                open={Boolean(userMenuAnchorEl)}
+                                                onClose={handleUserMenuClose}
                                             >
-                                                <MenuItem onClick={handleClose}>{user.fullname}</MenuItem>
+                                                <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
                                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                             </Menu>
                                         </>
                                     </>
                                 ) : (
                                     <>
-                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleClick}>
+                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
                                             Login / Sign Up
                                         </button>
                                         <Menu
-                                            anchorEl={anchorEl}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
+                                            anchorEl={authMenuAnchorEl}
+                                            open={Boolean(authMenuAnchorEl)}
+                                            onClose={handleAuthMenuClose}
                                         >
-                                            <Auth />
+                                            <Auth updateUser={setUser}/>
                                         </Menu>
                                     </>
                                 )}
                             </>
                         )}
                     </div>
+                    
                 </section>
             </section>
         </div>
