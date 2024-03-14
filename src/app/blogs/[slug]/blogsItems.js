@@ -182,9 +182,12 @@ const BlogsItems = ({ slug }) => {
             </div>
             <div className="flex flex-col mx-5">
               <div className="blog-container pl-[12px] object-left">
-                <h1 className="font-bold text-[42px] w-[75vw] my-2">
-                  {blog.title.rendered.replace(/&nbsp;/g, " ")}
-                </h1>
+                <h1
+                  className="font-bold text-[42px] w-[75vw] my-2"
+                  dangerouslySetInnerHTML={{ __html: blog.title.rendered }}
+                 />
+                  {/* {blog.title.rendered.replace(/&nbsp;/g, " ")} */}
+                {/* </h1> */}
                 <span className="text-[20px] my-2">
                   {formatDate(blog.date)}
                 </span>
@@ -216,7 +219,7 @@ const BlogsItems = ({ slug }) => {
 
                 {blog.acf["Basic-template"] && (
                   <>
-                  {/* Introduction */}
+                    {/* Introduction */}
                     {blog.acf.introduction !== "" && (
                       <>
                         <div className="text-4xl font-bold my-2">
