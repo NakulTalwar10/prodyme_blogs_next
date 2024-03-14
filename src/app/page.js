@@ -5,7 +5,7 @@ import BlogsSidebar from "./components/BlogsSidebar";
 export default function Home() {
   return (
   
-  <main>
+  <main className="">
     <BlogsPage/>
     {/* <BlogsSidebar/> */}
   </main>

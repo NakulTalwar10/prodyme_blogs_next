@@ -81,7 +81,7 @@ const BlogsPage = () => {
   };
 
   return (
-    <div className="flex mt-20">
+    <div className="flex mt-20 ">
       <BlogsSidebar isVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
 
       <div className="flex-1 overflow-y-auto">

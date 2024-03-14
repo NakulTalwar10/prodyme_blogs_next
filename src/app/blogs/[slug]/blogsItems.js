@@ -160,7 +160,7 @@ const BlogsItems = ({ slug }) => {
   }
 
   return (
-    <div>
+    <div className="font-roboto">
       {blog ? (
         <div>
           <div className="flex bg-[#F8F8F8] mt-[90px]">
@@ -192,13 +192,13 @@ const BlogsItems = ({ slug }) => {
                   {formatDate(blog.date)}
                 </span>
                 <div className="text-[18px] flex flex-wrap my-2">
-                  <span className="my-2">Tags:</span>
+                  <span className="my-2 pt-[10px] pb-[8px]">Tags:</span>
                   {tags &&
                     tags?.map((tag, index) => {
                       return (
                         <span
                           key={index}
-                          className="mx-3 py-1 px-3 border-2 my-2 text-[#FF7A34] border-[#FF7A34] bg-white"
+                          className="mx-3 pl-[20px] pr-[45px] pt-[10px] pb-[8px] border-2 my-2 text-[#FF7A34] border-[#FF7A34] bg-white"
                         >
                           {tag}
                         </span>
