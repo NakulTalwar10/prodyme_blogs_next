@@ -163,11 +163,11 @@ const BlogsItems = ({ slug }) => {
     <div>
       {blog ? (
         <div>
-          <div className="flex bg-[#F8F8F8]">
+          <div className="flex bg-[#F8F8F8] mt-[90px]">
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
-              <div className="overflow-y-auto scrollbar-hide flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
+              <div className="overflow-y-auto scrollbar-hide flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-[90px] scroll-containe">
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
@@ -216,6 +216,7 @@ const BlogsItems = ({ slug }) => {
 
                 {blog.acf["Basic-template"] && (
                   <>
+                  {/* Introduction */}
                     {blog.acf.introduction !== "" && (
                       <>
                         <div className="text-4xl font-bold my-2">
@@ -276,12 +277,11 @@ const BlogsItems = ({ slug }) => {
                         image={blog.acf["block2_image"]}
                       />
                     </div>
-                    <div>
-                      <div className="text-4xl  font-bold">
-                        {blog.acf?.["block2_heading"]}
-                      </div>
-                      <p className="blog-container w-[75vw] text-left font-normal text-base my-2 mb-8  ">
-                        {blog.acf?.["block2_content"]
+
+                    {/* conclusion */}
+                    {blog.acf.conclusion !== "" && (
+                      <p className="blog-container w-[75vw] text-left font-normal text-base p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
+                        {blog.acf?.["conclusion"]
                           .split("\r\n")
                           .map((line, index) => (
                             <React.Fragment key={index}>
@@ -290,18 +290,7 @@ const BlogsItems = ({ slug }) => {
                             </React.Fragment>
                           ))}
                       </p>
-                    </div>
-
-                    <p className="blog-container w-[75vw] text-left font-normal text-base p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
-                      {blog.acf?.["conclusion"]
-                        .split("\r\n")
-                        .map((line, index) => (
-                          <React.Fragment key={index}>
-                            {line}
-                            <br />
-                          </React.Fragment>
-                        ))}
-                    </p>
+                    )}
                   </>
                 )}
               </div>

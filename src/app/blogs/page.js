@@ -9,6 +9,7 @@ import Search from "../components/Search";
 import Paginations from "../components/Paginations";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import url from "../../url";
+import Image from "next/image";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -205,7 +206,9 @@ const BlogsPage = () => {
                             </div>
                           ) : (
                             <>
-                              <img
+                              <Image
+                                width={1000}
+                                height={1000}
                                 alt={post.title}
                                 className="w-full object-cover h-[200px] "
                                 src={
