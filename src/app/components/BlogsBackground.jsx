@@ -17,8 +17,8 @@ const BlogsBackground = () => {
         padding: '20px',
         backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%)'
       }}>
-        <h4 className="text-white text-[62px]">Blogs and Articles</h4>
-        <h5 className="text-white text-[20px] mb-4">You can find the most read blogs which would help you get the right set of products</h5>
+        <h4 className="text-white lg:text-[62px] md:text-[48px] text-[36px]">Blogs and Articles</h4>
+        <h5 className="text-white lg:text-[20px] md:text-[16px] text-[14px] mb-4">You can find the most read blogs which would help you get the right set of products</h5>
       </div>
     </div>
   );

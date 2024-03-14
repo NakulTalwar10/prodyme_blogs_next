@@ -7,6 +7,7 @@ import BlogsBackground from "../components/BlogsBackground";
 import BlogsSidebar from "../components/BlogsSidebar";
 import Search from "../components/Search";
 import Paginations from "../components/Paginations";
+import { BsLayoutSidebarInset } from "react-icons/bs";
 import url from "../../url";
 
 const BlogsPage = () => {
@@ -15,6 +16,7 @@ const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -68,29 +70,46 @@ const BlogsPage = () => {
 
   const filteredPosts = blogs.reduce((accumulator, blog) => {
     const filteredBlogPosts = blog.posts.filter((post) =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.categoryname.toLowerCase().includes(searchQuery.toLowerCase()) 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      blog.categoryname.toLowerCase().includes(searchQuery.toLowerCase())
     );
     return accumulator.concat(filteredBlogPosts);
-}, []);
+  }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   return (
-    <div className="flex">
-      <BlogsSidebar />
+    <div className="flex mt-20">
+      <BlogsSidebar isVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
 
       <div className="flex-1 overflow-y-auto">
         <BlogsBackground />
 
-        <div className="flex justify-end p-5">
-          <Search  setSearchQuery={setSearchQuery}/>
+        <div className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
+        <div className="lg:hidden">
+            <button
+              className="bg-white text-black px-3 py-1 text-xl"
+              onClick={toggleSidebar}
+            >
+              <BsLayoutSidebarInset />
+            </button>
+          </div>
 
-          <Paginations
-            totalCategories={blogs.length}
-            postsPerPage={postsPerPage}
-            paginate={paginate}
-          />
+
+          <div className="flex flex-col lg:flex-row  lg:ml-auto">
+            <Search setSearchQuery={setSearchQuery} />
+
+            <Paginations
+              totalCategories={blogs.length}
+              postsPerPage={postsPerPage}
+              paginate={paginate}
+            />
+          </div>
+
         </div>
+
 
         <section className="my-5 px-5">
           {searchQuery ? (
@@ -99,7 +118,7 @@ const BlogsPage = () => {
                 <h2 className="mr-2 text-xl font-bold">Search Results</h2>
                 <hr className="border flex-grow border-black" />
               </div>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredPosts.map((post, index) => (
                   <div key={index} className="my-5">
                     <img
@@ -141,7 +160,7 @@ const BlogsPage = () => {
             </div>
           ) : (
             <>
-              {currentCategories.map((blogItem, index) => (
+            {currentCategories.map((blogItem, index) => (
                 <div key={index}>
                   <div className="flex items-center ">
                     <h2 className="mr-2 text-xl font-bold">
@@ -149,7 +168,7 @@ const BlogsPage = () => {
                     </h2>
                     <hr className="border flex-grow border-black" />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-3 gap-5">
                     {blogItem.posts.map((post, postIndex) => (
                       <div
                         key={postIndex}
@@ -157,28 +176,27 @@ const BlogsPage = () => {
                       >
                         <div className="p-0">
                           {postIndex === 0 ? (
-                            <div className="relative">
+                            <div className="lg:relative  lg:block">
                               <div
-                                className="w-full h-[100px] sm:h-[200px] lg:h-[300px] xl:h-[400px] bg-cover bg-center"
+                                className="w-full h-[200px] lg:h-[400px]  bg-cover bg-center"
                                 style={{
-                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${
-                                    post.jetpack_featured_media_url ||
+                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post.jetpack_featured_media_url ||
                                     "./images/cardimages.jpg"
                                   })`,
                                 }}
                               ></div>
-                              <div className="absolute inset-0 flex flex-col justify-center items-start text-white px-5">
-                                <h4 className="text-4xl font-semibold">
+                              <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
+                                <h4 className="text-xl  lg:text-4xl font-semibold">
                                   {post.title}
                                 </h4>
-                                <p className="text-white">
+                                <p className="lg:text-white text-default-500">
                                   {formatDate(post.date)}
                                 </p>
-                                <p className="pr-[30%] text-white text-2xl font-semibold my-2">
+                                <p className="lg:pr-[30%] text-gray-600 lg:text-white lg:text-2xl font-semibold my-2">
                                   {stripHtmlTags(post.excerpt).substring(0, 250)}...
                                 </p>
                                 <Link href="/[slug]" as={"blogs/" + post.slug}>
-                                  <button className="text-orange-400 text-[20px] font-bold flex justify-center items-center">
+                                  <button className="text-orange-400 text-[16px] lg:text-[20px] font-bold flex justify-center items-center">
                                     <span className="hover:mr-2">Read More</span>
                                     <FaArrowRightLong className="transition-transform ease-in-out duration-300 ml-1 " />
                                   </button>
