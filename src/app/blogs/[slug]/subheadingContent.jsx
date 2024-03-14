@@ -84,7 +84,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
             </div>
             {image.description !== "" && (
               <div
-                className={` border-l-medium bg-white border-l-[#FF7A34] text-center italic ${
+                className={` border-l-medium border-l-[#FF7A34] text-center italic px-[20px] py-[22px] bg-white ${
                   alignment === "left"
                     ? "w-[330px] mx-auto ml-0"
                     : alignment === "right"
