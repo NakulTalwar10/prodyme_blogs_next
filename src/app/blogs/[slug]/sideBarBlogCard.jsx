@@ -15,7 +15,11 @@ const SideBarBlogCard = ({post}) => {
         alt="image"
         className="object-cover w-[150px] h-[65px] my-1"
       />
-      <span className="font-bold">{post.title.rendered}</span>
+      {/* <span className="font-bold">{post.title.rendered}</span> */}
+      <span
+        className="font-bold "
+        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+      />
       <div
         className="font-normal "
         dangerouslySetInnerHTML={{

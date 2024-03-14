@@ -5,17 +5,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { load } from "cheerio";
 import * as cheerio from "cheerio";
+import SubheadingContent from "./subheadingContent";
 
 import Image from "next/image";
 import SideBarBlogCard from "./sideBarBlogCard";
 import ProductSlider from "../../components/Slider";
 import url from "../../../url";
 
-const BlogsItems = ({ slug}) => {
+const BlogsItems = ({ slug }) => {
   const [blog, setBlog] = useState(null);
   // const [userTags, setUserTags] = useState([]);
   const [tags, setTags] = useState([]);
-  const [blogContent, setBlogContent] = useState([]);
+  // const [blogContent, setBlogContent] = useState([]);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [category, setCategory] = useState(null);
@@ -49,7 +50,7 @@ const BlogsItems = ({ slug}) => {
       }
     };
 
-    if(category!== null){
+    if (category !== null) {
       fetchData();
     }
   }, [category]);
@@ -57,44 +58,39 @@ const BlogsItems = ({ slug}) => {
   // console.log(slug);
   // for getting sidbar category SideBarBlogCards
 
-// setting category and tags
-useEffect(() => {
-  const fetchCategory = async () => {
-    try {
-      const response = await axios.get(
-        `${url.apiUrl}/blogs/categories?categoryId=${blog.categories[0]}`
-      );
-      setCategory(response.data);
-      console.log(response.data)
-    } catch (error) {
-      console.error("Error fetching blog:", error);
+  // setting category and tags
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(
+          `${url.apiUrl}/blogs/categories?categoryId=${blog.categories[0]}`
+        );
+        setCategory(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+      }
+    };
+
+    const fetchTags = async () => {
+      const joinedTags = blog.tags.join(",");
+      console.log("jjjtags", joinedTags);
+      try {
+        const response = await axios.get(
+          `${url.apiUrl}/blogs/tags?tagsId=${joinedTags}`
+        );
+        setTags(response.data);
+        console.log("tags name getting ", response.data);
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+      }
+    };
+
+    if (blog !== null) {
+      fetchTags();
+      fetchCategory();
     }
-  }
-
-  const fetchTags = async () => {
-    const joinedTags = blog.tags.join(',')
-    console.log("jjjtags", joinedTags);
-    try {
-      const response = await axios.get(
-        `${url.apiUrl}/blogs/tags?tagsId=${joinedTags}`
-      );
-      setTags(response.data);
-      console.log("tags name getting ",response.data);
-    } catch (error) {
-      console.error("Error fetching blog:", error);
-    }
-  };
-
-  if(blog!==null){
-    fetchTags();
-    fetchCategory();
-  }
-
-},[blog])
-
-
-
-
+  }, [blog]);
 
   // setting Blog data and userTags state
   useEffect(() => {
@@ -120,35 +116,35 @@ useEffect(() => {
     fetchBlog();
   }, []);
 
-  // useeffect for formatting the content into seperate blocks
-  useEffect(() => {
-    if (blog === null) return;
-    const inputString = blog.content.rendered;
-    // Regular expression to match block elements
-    const figureRegex = /<figure\b[^>]*>([\s\S]*?)<\/figure>/g;
+  // // useeffect for formatting the content into seperate blocks
+  // useEffect(() => {
+  //   if (blog === null) return;
+  //   const inputString = blog.content.rendered;
+  //   // Regular expression to match block elements
+  //   const figureRegex = /<figure\b[^>]*>([\s\S]*?)<\/figure>/g;
 
-    // Split the input string using the figure block regex
-    const parts = inputString.split(/(<figure\b[^>]*>[\s\S]*?<\/figure>)/);
+  //   // Split the input string using the figure block regex
+  //   const parts = inputString.split(/(<figure\b[^>]*>[\s\S]*?<\/figure>)/);
 
-    // Filter out empty strings and trim each part
-    const filteredParts = parts.filter((part) => part.trim() !== "");
+  //   // Filter out empty strings and trim each part
+  //   const filteredParts = parts.filter((part) => part.trim() !== "");
 
-    // Output array to store image and text parts in sequence
-    const outputArray = [];
+  //   // Output array to store image and text parts in sequence
+  //   const outputArray = [];
 
-    // Loop through filtered parts and categorize into image and text
-    filteredParts.forEach((part) => {
-      if (part.includes("<figure")) {
-        outputArray.push({ type: "image", content: part });
-      } else {
-        outputArray.push({ type: "text", content: part });
-      }
-    });
+  //   // Loop through filtered parts and categorize into image and text
+  //   filteredParts.forEach((part) => {
+  //     if (part.includes("<figure")) {
+  //       outputArray.push({ type: "image", content: part });
+  //     } else {
+  //       outputArray.push({ type: "text", content: part });
+  //     }
+  //   });
 
-    // Logging the output array
-    // console.log(outputArray);
-    setBlogContent(outputArray);
-  }, [blog]);
+  //   // Logging the output array
+  //   // console.log(outputArray);
+  //   setBlogContent(outputArray);
+  // }, [blog]);
 
   // date formatting function
   function formatDate(dateString) {
@@ -167,11 +163,11 @@ useEffect(() => {
     <div>
       {blog ? (
         <div>
-          <div className="flex bg-[#F8F8F8]">
+          <div className="flex bg-[#F8F8F8] mt-[90px]">
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
-              <div className="overflow-y-auto scrollbar-hide flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-0 scroll-containe">
+              <div className="overflow-y-auto scrollbar-hide flex flex-col h-[100vh] justify-start gap-2  p-4 font-normal text-left sticky top-[90px] scroll-containe">
                 <span className="text-left text-[16px] font-bold">
                   Related Blogs
                 </span>
@@ -184,15 +180,18 @@ useEffect(() => {
                 })}
               </div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col mx-5">
               <div className="blog-container pl-[12px] object-left">
-                <h1 className="font-bold text-[42px] my-3">
-                  {blog.title.rendered.replace(/&nbsp;/g, " ")}
-                </h1>
-                <span className="text-[20px] my-3">
+                <h1
+                  className="font-bold text-[42px] w-[75vw] my-2"
+                  dangerouslySetInnerHTML={{ __html: blog.title.rendered }}
+                 />
+                  {/* {blog.title.rendered.replace(/&nbsp;/g, " ")} */}
+                {/* </h1> */}
+                <span className="text-[20px] my-2">
                   {formatDate(blog.date)}
                 </span>
-                <div className="text-[18px] flex flex-wrap my-3">
+                <div className="text-[18px] flex flex-wrap my-2">
                   <span className="my-2">Tags:</span>
                   {tags &&
                     tags?.map((tag, index) => {
@@ -206,76 +205,97 @@ useEffect(() => {
                       );
                     })}
                 </div>
-                {blog.jetpack_featured_media_url !== null ? (
+                {blog.acf.thumbnail.url !== null ? (
                   <Image
-                    src={
-                      blog.jetpack_featured_media_url ||
-                      "../images/cardimages.jpg"
-                    }
+                    src={blog.acf.thumbnail.url || "../images/cardimages.jpg"}
                     alt="image"
                     width={100}
                     height={100}
-                    className="w-[75vw] h-[400px] object-cover"
+                    className="w-[75vw] h-[400px] object-cover my-5 "
                   />
                 ) : (
                   <div>insert defalut image</div>
                 )}
-                {blogContent?.map((block, index) => {
-                  if (block.type === "text") {
-                    return (
-                      <div
-                        key={index}
-                        className="blog-container w-[75vw] text-left  "
-                        dangerouslySetInnerHTML={{ __html: block.content }}
-                      />
-                    );
-                  } else {
-                    // Regular expression to extract width, height, and src attributes from the img tag
-                    const regex =
-                      /<img[^>]*?width="([^"]*?)"[^>]*?height="([^"]*?)"[^>]*?src="([^"]*?)"/;
 
-                    // Match the regex against the HTML string
-                    const match = block.content.match(regex);
-                    if (match) {
-                      const width = match[1];
-                      const height = match[2];
-                      const imageUrl = match[3];
-                      const aspectRatio = width / height;
-                      // Set default alignment as left
-                      let alignment = "left";
-
-                      // Determine alignment based on aspect ratio
-                      if (aspectRatio > 4 / 3) {
-                        alignment = "right";
-                      }
-                      if (aspectRatio > 6 / 3) {
-                        alignment = "center";
-                      }
-                      return (
-                        <div className="image-container w-[80vw]" key={index}>
-                          <div className="clear-both"></div>{" "}
-                          {/* Add this div to clear floating */}
-                          <Image
-                            src={imageUrl || "../images/cardimages.jpg"}
-                            alt="Your Image"
-                            width={parseInt(width)}
-                            height={parseInt(height)}
-                            // layout="intrinsic"
-                            className={`m-3 ${
-                              alignment === "left"
-                                ? "float-left h-[450px] w-auto ml-0"
-                                : alignment === "right"
-                                ? "float-right w-[450px] h-auto mr-0"
-                                : "mx-auto w-[75vw] h-auto float-left"
-                            }`}
-                          />
+                {blog.acf["Basic-template"] && (
+                  <>
+                    {/* Introduction */}
+                    {blog.acf.introduction !== "" && (
+                      <>
+                        <div className="text-4xl font-bold my-2">
+                          Introduction
                         </div>
-                      );
-                    } else {
-                      // return <div key={index}>Put Defalut Image here</div>;
-                    }
-                  }
-                })}
+                        <p
+                          className="blog-container w-[75vw] text-left font-normal text-base my-2 mb-8  "
+                          // dangerouslySetInnerHTML={{ __html: blog.acf.introduction }}
+                        >
+                          {blog.acf.introduction
+                            .split("\r\n")
+                            .map((line, index) => (
+                              <React.Fragment key={index}>
+                                {line}
+                                <br />
+                              </React.Fragment>
+                            ))}
+                        </p>
+                      </>
+                    )}
+
+                    <div>
+                      {/* block 1 heading and its content */}
+                      <SubheadingContent
+                        isSub={false}
+                        subHeading={blog.acf["block1_heading"]}
+                        content={blog.acf["block1_content"]}
+                        quote={blog.acf["block1_quote"]}
+                        image={blog.acf["block1_image"]}
+                      />
+
+                      {/* block 1 subheading and its content */}
+                      <div>
+                        {(() => {
+                          const elements = [];
+                          for (let i = 1; i <= 8; i++) {
+                            elements.push(
+                              <SubheadingContent
+                                isSub={true}
+                                subHeading={blog.acf[`block1_subheading${i}`]}
+                                content={blog.acf[`block1_content${i}`]}
+                                quote={blog.acf[`block1_quote${i}`]}
+                                image={blog.acf[`block1_image${i}`]}
+                                key={i}
+                              />
+                            );
+                          }
+                          return elements;
+                        })()}
+                      </div>
+
+                      {/* block 2 heading and its content */}
+                      <SubheadingContent
+                        isSub={false}
+                        subHeading={blog.acf["block2_heading"]}
+                        content={blog.acf["block2_content"]}
+                        quote={blog.acf["block2_quote"]}
+                        image={blog.acf["block2_image"]}
+                      />
+                    </div>
+
+                    {/* conclusion */}
+                    {blog.acf.conclusion !== "" && (
+                      <p className="blog-container w-[75vw] text-left font-normal text-base p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
+                        {blog.acf?.["conclusion"]
+                          .split("\r\n")
+                          .map((line, index) => (
+                            <React.Fragment key={index}>
+                              {line}
+                              <br />
+                            </React.Fragment>
+                          ))}
+                      </p>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </div>
