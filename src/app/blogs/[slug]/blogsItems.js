@@ -191,7 +191,7 @@ const BlogsItems = ({ slug }) => {
                 <span className="text-[20px] my-2">
                   {formatDate(blog.date)}
                 </span>
-                <div className="text-[18px] flex flex-wrap my-2">
+                <div className="text-[16px] flex flex-wrap my-2">
                   <span className="my-2 pt-[10px] pb-[8px]">Tags:</span>
                   {tags &&
                     tags?.map((tag, index) => {
@@ -226,7 +226,7 @@ const BlogsItems = ({ slug }) => {
                           Introduction
                         </div>
                         <p
-                          className="blog-container w-[75vw] text-left font-normal text-base my-2 mb-8  "
+                          className="blog-container w-[75vw] text-left font-normal text-lg my-2 mb-8  "
                           // dangerouslySetInnerHTML={{ __html: blog.acf.introduction }}
                         >
                           {blog.acf.introduction
@@ -283,7 +283,7 @@ const BlogsItems = ({ slug }) => {
 
                     {/* conclusion */}
                     {blog.acf.conclusion !== "" && (
-                      <p className="blog-container w-[75vw] text-left font-normal text-base p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
+                      <p className="blog-container w-[75vw] text-left font-normal text-lg p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
                         {blog.acf?.["conclusion"]
                           .split("\r\n")
                           .map((line, index) => (

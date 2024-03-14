@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import quote from "../../../../public/images/quote/quote.png"
 
 const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
   const [width, setWidth] = useState(0);
@@ -98,7 +99,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </div>
         )}
         {content !== "" && (
-          <p className="blog-container w-[75vw] text-left font-normal text-base my-2">
+          <p className="blog-container w-[75vw] text-left font-normal text-lg my-2">
             {content.split("\r\n").map((line, index) => (
               <React.Fragment key={index}>
                 {line}
@@ -108,8 +109,10 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </p>
         )}
         {quote !== "" && (
-          <div>
-            <div className="text-xl italic font-semibold text-center py-5 my-5 border-y-medium ">
+          <div className="flex gap-[50px]">
+            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
+            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
+            <div className="text-4xl italic font-semibold text-center py-5 my-5 border-y-medium ">
               {quote}
             </div>
           </div>
