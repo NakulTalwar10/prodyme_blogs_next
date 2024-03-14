@@ -170,7 +170,7 @@ const Header = ({ dis }) => {
                             <>
                                 {user ? (
                                     <>
-                                        <li>
+                                        <>
                                             <IconButton onClick={handleClick}>
                                                 <AccountCircleOutlinedIcon />
                                             </IconButton>
@@ -182,7 +182,7 @@ const Header = ({ dis }) => {
                                                 <MenuItem onClick={handleClose}>{user.fullname}</MenuItem>
                                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                             </Menu>
-                                        </li>
+                                        </>
                                     </>
                                 ) : (
                                     <>

@@ -7,7 +7,7 @@ import BlogsBackground from "../components/BlogsBackground";
 import BlogsSidebar from "../components/BlogsSidebar";
 import Search from "../components/Search";
 import Paginations from "../components/Paginations";
-import { BsLayoutSidebarInset } from "react-icons/bs";
+
 import url from "../../url";
 
 const BlogsPage = () => {
@@ -16,7 +16,6 @@ const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -28,7 +27,7 @@ const BlogsPage = () => {
             ...post,
             title: post.title
               ? post.title.rendered
-                ? post.title.rendered.replace(/&nbsp;/g, " ")
+                ? post.title.rendered.replace(/&#8217;/g, " ")
                 : ""
               : "",
             content: post.content
@@ -55,6 +54,7 @@ const BlogsPage = () => {
   const stripHtmlTags = (html) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
+    
   };
 
   const formatDate = (dateString) => {
@@ -76,27 +76,16 @@ const BlogsPage = () => {
     return accumulator.concat(filteredBlogPosts);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+  
 
   return (
     <div className="flex mt-20">
-      <BlogsSidebar isVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
+      <BlogsSidebar  />
 
       <div className="flex-1 overflow-y-auto">
         <BlogsBackground />
 
         <div className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
-        <div className="lg:hidden">
-            <button
-              className="bg-white text-black px-3 py-1 text-xl"
-              onClick={toggleSidebar}
-            >
-              <BsLayoutSidebarInset />
-            </button>
-          </div>
-
 
           <div className="flex flex-col lg:flex-row  lg:ml-auto">
             <Search setSearchQuery={setSearchQuery} />
@@ -125,7 +114,7 @@ const BlogsPage = () => {
                       alt={post.title}
                       className="w-full object-cover h-[200px] "
                       src={
-                        post.jetpack_featured_media_url ||
+                        post?.acf?.thumbnail?.url  ||
                         "./images/cardimages.jpg"
                       }
                     />
@@ -135,7 +124,7 @@ const BlogsPage = () => {
                         {formatDate(post.date)}
                       </p>
                       <div>
-                        {stripHtmlTags(post.content).length > 50 ? (
+                        {stripHtmlTags(post.excerpt).length > 150 ? (
                           <div>
                             <p className="text-gray-600 font-semibold my-2">
                               {stripHtmlTags(post.excerpt).substring(0, 150)}...
@@ -168,7 +157,7 @@ const BlogsPage = () => {
                     </h2>
                     <hr className="border flex-grow border-black" />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {blogItem.posts.map((post, postIndex) => (
                       <div
                         key={postIndex}
@@ -180,7 +169,7 @@ const BlogsPage = () => {
                               <div
                                 className="w-full h-[200px] lg:h-[400px]  bg-cover bg-center"
                                 style={{
-                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post.jetpack_featured_media_url ||
+                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post?.acf?.thumbnail?.url ||
                                     "./images/cardimages.jpg"
                                   })`,
                                 }}
@@ -209,7 +198,7 @@ const BlogsPage = () => {
                                 alt={post.title}
                                 className="w-full object-cover h-[200px] "
                                 src={
-                                  post.jetpack_featured_media_url ||
+                                  post?.acf?.thumbnail?.url  ||
                                   "./images/cardimages.jpg"
                                 }
                               />
@@ -221,7 +210,7 @@ const BlogsPage = () => {
                                   {formatDate(post.date)}
                                 </p>
                                 <div className="">
-                                  {stripHtmlTags(post.content).length > 50 ? (
+                                  {stripHtmlTags(post.excerpt).length > 150 ? (
                                     <div>
                                       <p className="text-gray-600 font-semibold my-2">
                                         {stripHtmlTags(post.excerpt).substring(

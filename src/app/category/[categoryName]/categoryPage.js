@@ -17,7 +17,6 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
     const [postsPerPage] = useState(3);
     const [currentPagePosts, setCurrentPagePosts] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -27,7 +26,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                     ...blog,
                     posts: blog.posts.map(post => ({
                         ...post,
-                        title: post.title ? (post.title.rendered ? post.title.rendered.replace(/&nbsp;/g, " ") : "") : "",
+                        title: post.title ? (post.title.rendered ? post.title.rendered.replace(/&#8217;/g, " "): "") : "",
                         content: post.content ? (post.content.rendered ? post.content.rendered : "") : "",
                         excerpt: post.excerpt ? (post.excerpt.rendered ? post.excerpt.rendered : "") : ""
                     })),
@@ -63,27 +62,15 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
         return accumulator.concat(filteredBlogPosts);
     }, []);
 
-    const toggleSidebar = () => {
-        setIsSidebarVisible(!isSidebarVisible);
-    };
+   
 
     return (
         <div className="flex mt-20">
-            <BlogsSidebar isVisible={isSidebarVisible} />
+            <BlogsSidebar  />
             <div className="flex-1 overflow-y-auto">
                 <BlogsBackground />
 
                 <div className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
-
-                    <div>
-                        <button
-                            className="bg-white text-black px-3 py-1 text-xl"
-                            onClick={toggleSidebar}
-                        >
-                            {isSidebarVisible ? <BsLayoutSidebarInset /> : <BsLayoutSidebarInset />}
-                        </button>
-                    </div>
-
                     <div className="flex flex-col lg:flex-row justify-end lg:ml-auto">
                         <Search setSearchQuery={setSearchQuery} />
                         <Paginations
@@ -107,13 +94,13 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                         <img
                                             alt={post.title}
                                             className="w-full object-cover h-[200px]"
-                                            src={post.jetpack_featured_media_url || "../images/cardimages.jpg"}
+                                            src={post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"}
                                         />
                                         <div className="text-small justify-between">
                                             <h4 className="text-xl font-semibold">{post.title}</h4>
                                             <p className="text-default-500">{formatDate(post.date)}</p>
                                             <div>
-                                                {stripHtmlTags(post.content).length > 50 ? (
+                                                {stripHtmlTags(post.excerpt).length > 50 ? (
                                                     <div>
                                                         <p className="text-gray-600 font-semibold my-2">
                                                             {stripHtmlTags(post.excerpt).substring(0, 150)}...
@@ -152,7 +139,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                         <div className="lg:relative  lg:block">
                                                             <div
                                                                 className="w-full h-[100px] sm:h-[200px] lg:h-[300px] xl:h-[400px] bg-cover bg-center"
-                                                                style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post.jetpack_featured_media_url || "../images/cardimages.jpg"})` }}
+                                                                style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"})` }}
                                                             ></div>
                                                             <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
                                                                 <h4 className="text-xl lg:text-4xl font-semibold">{post.title}</h4>
@@ -173,13 +160,13 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                             <img
                                                                 alt={post.title}
                                                                 className="w-full object-cover h-[200px] "
-                                                                src={post.jetpack_featured_media_url || "../images/cardimages.jpg"}
+                                                                src={post?.acf?.thumbnail?.url  || "../images/cardimages.jpg"}
                                                             />
                                                             <div className="text-small justify-between">
                                                                 <h4 className="text-xl font-semibold">{post.title}</h4>
                                                                 <p className="text-default-500">{formatDate(post.date)}</p>
                                                                 <div className="">
-                                                                    {stripHtmlTags(post.content).length > 50 ? (
+                                                                    {stripHtmlTags(post.excerpt).length > 150 ? (
                                                                         <div>
                                                                             <p className="text-gray-600 font-semibold my-2">
                                                                                 {stripHtmlTags(post.excerpt).substring(0, 150)}...
