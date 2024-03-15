@@ -77,6 +77,7 @@ const BlogsPage = () => {
     <div className="flex mt-20">
       <BlogsSidebar />
 
+
       <div className="flex-1 overflow-y-auto">
         <BlogsBackground />
 
@@ -113,27 +114,27 @@ const BlogsPage = () => {
                     />
                     <div className="text-small justify-between">
                       <h4
-                        className="text-xl font-semibold"
+                        className="text-xl lg:text-xl tracking-widest font-semibold"
                         dangerouslySetInnerHTML={{ __html: post.title }}
                       ></h4>
-                      <p className="text-default-500">
+                      <p className="text-default-600 mt-2 text-[16px]">
                         {formatDate(post.date)}
                       </p>
                       <div>
                         {stripHtmlTags(post.excerpt).length > 150 ? (
                           <div>
-                            <p className="text-gray-600 font-semibold my-2">
+                            <p className="text-gray-900 text-md tracking-widest lg:font-medium my-2">
                               {stripHtmlTags(post.excerpt).substring(0, 150)}...
                             </p>
                             <Link href="/[slug]" as={"blogs/" + post.slug}>
-                              <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center">
-                                <span className="hover:mr-2">Read More</span>
+                              <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center mt-2">
+                                <span className="hover:mr-2 ">Read More</span>
                                 <FaArrowRightLong className="transition-transform ease-in-out duration-300 ml-1 " />
                               </button>
                             </Link>
                           </div>
                         ) : (
-                          <p className="text-gray-600">
+                          <p className="text-gray-900 tracking-widest">
                             {stripHtmlTags(post.excerpt)}
                           </p>
                         )}
@@ -154,12 +155,11 @@ const BlogsPage = () => {
                     <hr className="border flex-grow border-black" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {blogItem.posts.map((post, postIndex) => (
+                    {blogItem.posts.slice(0, 9).map((post, postIndex) => (
                       <div
                         key={postIndex}
-                        className={`my-5 ${
-                          postIndex === 0 ? "lg:col-span-3" : ""
-                        }`}
+                        className={`my-5 ${postIndex === 0 ? "lg:col-span-3" : ""
+                          }`}
                       >
                         <div className="p-0">
                           {postIndex === 0 ? (
@@ -167,23 +167,22 @@ const BlogsPage = () => {
                               <div
                                 className="w-full h-[200px] lg:h-[400px]  bg-cover bg-center"
                                 style={{
-                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${
-                                    post?.acf?.thumbnail?.url ||
+                                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post?.acf?.thumbnail?.url ||
                                     "./images/cardimages.jpg"
-                                  })`,
+                                    })`,
                                 }}
                               ></div>
                               <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
                                 <h4
-                                  className="text-xl  lg:text-4xl font-semibold"
+                                  className="text-xl lg:pr-[15%] tracking-widest lg:text-2xl font-semibold"
                                   dangerouslySetInnerHTML={{
                                     __html: post.title,
                                   }}
                                 ></h4>
-                                <p className="lg:text-white text-default-500">
+                                <p className="lg:text-white text-default-600 mt-2">
                                   {formatDate(post.date)}
                                 </p>
-                                <p className="lg:pr-[30%] text-gray-600 lg:text-white lg:text-2xl font-semibold my-2">
+                                <p className="lg:pr-[15%] text-gray-900 text-md tracking-widest lg:text-white  font-normal my-2 lg:font-medium">
                                   {stripHtmlTags(post.excerpt).substring(
                                     0,
                                     250
@@ -191,7 +190,7 @@ const BlogsPage = () => {
                                   ...
                                 </p>
                                 <Link href="/[slug]" as={"blogs/" + post.slug}>
-                                  <button className="text-orange-400 text-[16px] lg:text-[20px] font-bold flex justify-center items-center">
+                                  <button className="text-orange-400 text-[16px] lg:text-[20px] font-semibold flex justify-center items-center mt-2">
                                     <span className="hover:mr-2">
                                       Read More
                                     </span>
@@ -213,16 +212,14 @@ const BlogsPage = () => {
                                 }
                               />
                               <div className="text-small justify-between">
-                                <h4 className="text-xl font-semibold">
-                                  {post.title}
-                                </h4>
-                                <p className="text-default-500">
+                                <h4 className="text-xl lg:text-xl tracking-widest font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
+                                <p className="text-default-600 mt-2 text-[16px] ">
                                   {formatDate(post.date)}
                                 </p>
                                 <div className="">
                                   {stripHtmlTags(post.excerpt).length > 150 ? (
                                     <div>
-                                      <p className="text-gray-600 font-semibold my-2">
+                                      <p className="text-gray-900 text-md tracking-widest lg:font-medium my-2">
                                         {stripHtmlTags(post.excerpt).substring(
                                           0,
                                           150
@@ -233,7 +230,7 @@ const BlogsPage = () => {
                                         href="/[slug]"
                                         as={`/blogs/${post.slug}?categoryname=${blogItem.categoryname}`}
                                       >
-                                        <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center">
+                                        <button className="text-orange-400 text-[16px] font-bold flex justify-center items-center mt-2">
                                           <span className="hover:mr-2">
                                             Read More
                                           </span>
@@ -242,7 +239,7 @@ const BlogsPage = () => {
                                       </Link>
                                     </div>
                                   ) : (
-                                    <p className="text-gray-600">
+                                    <p className="text-gray-900 tracking-widest">
                                       {stripHtmlTags(post.excerpt)}
                                     </p>
                                   )}
@@ -253,9 +250,24 @@ const BlogsPage = () => {
                         </div>
                       </div>
                     ))}
+                    {blogItem.posts.length > 9 && (
+                      <div className="mt-5 flex justify-center items-center h-[200px] bg-gray-700">
+                      <Link href="/category/[categoryName]" as={`/category/${blogItem.categoryname}`}>
+                        <button
+                          className="text-orange-400 text-[26px] font-bold flex justify-center items-center m"
+                          onClick={() => paginate(currentPage + 1)}
+                        >
+                          <span className="hover:mr-2 ">Get More</span>
+                          <FaArrowRightLong className="transition-transform ease-in-out duration-300 ml-1 " />
+                        </button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
+
                 </div>
               ))}
+
             </>
           )}
         </section>
