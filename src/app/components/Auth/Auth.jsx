@@ -76,7 +76,7 @@ const Auth = ({updateUser}) => {
                         <div className="relative">
 
                             <input type={showPassword ? "text" : "password"} className="rounded-full border border-gray-300 outline-none px-4 py-3 lg:pr-20" placeholder="Password" name="password" value={user.password} onChange={handleChange} />
-                            <button type="button" className="absolute top-4 right-5 text-lg" onClick={togglePasswordVisibility}>
+                            <button type="button" className="absolute top-4 right-5 pr-5 lg:pr-0 text-lg" onClick={togglePasswordVisibility}>
                                 {showPassword ?<FaRegEye/>  :  <GrFormViewHide/>}
                             </button>
                         </div>
