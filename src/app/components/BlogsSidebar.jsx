@@ -28,7 +28,7 @@ const BlogsSidebar = () => {
   return (
     <div className={`bg-black md:w-36 lg:w-48 px-5 min-h-screen flex flex-col justify-start items-center md:block ${isVisible ? 'w-full lg:w-48' : 'w-12'}`}>
 
-      <button onClick={toggleSidebar} className={`mt-32 md:hidden top-[100px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? 'hidden' : 'sticky'}`}>
+      <button onClick={toggleSidebar} className={`mt-32 md:hidden top-[150px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? 'hidden' : 'sticky'}`}>
         <BsLayoutSidebarInset />
       </button>
 
