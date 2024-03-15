@@ -37,7 +37,7 @@ const Card = ({ product, fun }) => {
     };
     return (
       <section
-        className="globalCard w-[300px] bg-white rounded-2xl border border-gray-300 relative flex flex-col p-4"
+        className="globalCard w-[300px] bg-white rounded-2xl border border-gray-300 relative flex flex-col p-4 mx-auto"
         id={product.id}
         onClick={(e) => handledetails(e)}
       >

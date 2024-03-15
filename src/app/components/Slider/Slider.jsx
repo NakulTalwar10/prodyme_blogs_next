@@ -3,20 +3,18 @@
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import "./swiper-custom.css"; // Import the CSS file
 
 // Import Swiper styles
+import { useSwiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import Card from "./card/Card";
+import Card from "../card/Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import url from "../../url";
+import url from "../../../url";
 
-const ProductSlider = (
-  {
-    category, tags
-  }
-) => {
+const ProductSlider = ({ category, tags }) => {
   const [products, setProducts] = useState([]);
   // const [category, setCategory] = useState("Kitchen");
   // const [tags, setTags] = useState([
@@ -25,17 +23,21 @@ const ProductSlider = (
   //   "Kitchen Basin"
   // ]);
 
+  const swiper = useSwiper();
+
   useEffect(() => {
     fetchData();
-    console.log(tags)
+    console.log(tags);
   }, [category, tags]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${url.apiUrl}/products?category=${category}&tags=${tags.join(",")}`);
+      const response = await axios.get(
+        `${url.apiUrl}/products?category=${category}&tags=${tags.join(",")}`
+      );
       const data = response.data;
-      console.log("Data Log :",response.data)
-      
+      console.log("Data Log :", response.data);
+
       console.log(data.products);
       setProducts(data.products);
       // console.log(filteredProducts.subcategories[0].products);
@@ -54,16 +56,19 @@ const ProductSlider = (
   //   };
 
   return (
-    <div className="bg-[#F8F8F8] justify-center items-center text-center p-3">
-      <span className="font-bold text-[42px] m-3 ">Products in this Blog</span>
+    <div className="bg-[#F8F8F8]  justify-center items-center text-center p-3 py-0 relative m-0">
+      <div className="bg-[#2A2A2A] w-[200px] absolute left-0 h-full"></div>
+      <span className="font-bold text-[42px] m-3 max-sm:text-3xl">
+        Products in this Blog
+      </span>
       <Swiper
         // install Swiper modules
-        modules={[Navigation]}
+        modules={[Navigation, A11y]}
         spaceBetween={50}
         slidesPerView={1}
         navigation
         // onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        // onSlideChange={() => console.log("slide change")}
         className="m-3"
         breakpoints={{
           640: {
@@ -81,16 +86,18 @@ const ProductSlider = (
           1280: {
             slidesPerView: 4,
             spaceBetween: 200,
-          }
+          },
         }}
       >
-        {products?.map((product, i) => {
-          return (
-            <SwiperSlide className="ml-0 " key={product._id}>
-              <Card product={product} />
-            </SwiperSlide>
-          );
-        })}
+        <div className="mx-auto">
+          {products?.map((product, i) => {
+            return (
+              <SwiperSlide className="ml-0 " key={product._id}>
+                <Card product={product} />
+              </SwiperSlide>
+            );
+          })}
+        </div>
 
         <SwiperSlide className="m-3 justify-center items-center"></SwiperSlide>
       </Swiper>
