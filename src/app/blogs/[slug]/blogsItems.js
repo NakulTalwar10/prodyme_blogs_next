@@ -160,10 +160,10 @@ const BlogsItems = ({ slug }) => {
   }
 
   return (
-    <div>
+    <div className="font-roboto">
       {blog ? (
         <div>
-          <div className="flex bg-[#F8F8F8] mt-[90px]">
+          <div className="flex bg-[#F8F8F8] mt-[80px] max-sm:mt-[150px] max-sm:w-[100vw]">
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
@@ -180,7 +180,7 @@ const BlogsItems = ({ slug }) => {
                 })}
               </div>
             </div>
-            <div className="flex flex-col mx-5">
+            <div className="flex flex-col mx-5 max-sm:mx-0">
               <div className="blog-container pl-[12px] object-left">
                 <h1
                   className="font-bold text-[42px] w-[75vw] my-2"
@@ -191,14 +191,14 @@ const BlogsItems = ({ slug }) => {
                 <span className="text-[20px] my-2">
                   {formatDate(blog.date)}
                 </span>
-                <div className="text-[18px] flex flex-wrap my-2">
-                  <span className="my-2">Tags:</span>
+                <div className="text-[16px] flex flex-wrap my-2">
+                  <span className="my-2 pt-[10px] pb-[8px]">Tags:</span>
                   {tags &&
                     tags?.map((tag, index) => {
                       return (
                         <span
                           key={index}
-                          className="mx-3 py-1 px-3 border-2 my-2 text-[#FF7A34] border-[#FF7A34] bg-white"
+                          className="mx-3 pl-[20px] pr-[45px] pt-[10px] pb-[8px] border-2 my-2 text-[#FF7A34] border-[#FF7A34] bg-white"
                         >
                           {tag}
                         </span>
@@ -211,7 +211,7 @@ const BlogsItems = ({ slug }) => {
                     alt="image"
                     width={100}
                     height={100}
-                    className="w-[75vw] h-[400px] object-cover my-5 "
+                    className="w-[75vw] max-lg:w-[85vw] h-[400px] object-cover my-5 "
                   />
                 ) : (
                   <div>insert defalut image</div>
@@ -226,7 +226,7 @@ const BlogsItems = ({ slug }) => {
                           Introduction
                         </div>
                         <p
-                          className="blog-container w-[75vw] text-left font-normal text-base my-2 mb-8  "
+                          className="blog-container w-[75vw] text-left font-normal text-lg my-2 mb-8  "
                           // dangerouslySetInnerHTML={{ __html: blog.acf.introduction }}
                         >
                           {blog.acf.introduction
@@ -283,7 +283,7 @@ const BlogsItems = ({ slug }) => {
 
                     {/* conclusion */}
                     {blog.acf.conclusion !== "" && (
-                      <p className="blog-container w-[75vw] text-left font-normal text-base p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
+                      <p className="blog-container w-[75vw] text-left font-normal text-lg p-5 border-t-medium bg-white border-t-[#FF7A34] mb-3 clear-both my-3 ">
                         {blog.acf?.["conclusion"]
                           .split("\r\n")
                           .map((line, index) => (

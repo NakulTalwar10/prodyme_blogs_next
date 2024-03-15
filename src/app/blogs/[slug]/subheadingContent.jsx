@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import quote from "../../../../public/images/quote/quote.png"
 
 const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
   const [width, setWidth] = useState(0);
@@ -52,19 +53,19 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           <div
             className={`my-3 ${
               alignment === "left"
-                ? "float-left w-[350px] mx-auto"
+                ? "float-left w-[350px] mx-auto max-sm:w-[300px]"
                 : alignment === "right"
-                ? "float-right w-[470px] h-auto mr-0 mx-auto "
-                : "mx-auto w-[75vw] h-auto float-left mb-8 mt-0"
+                ? "float-right w-[470px] h-auto mr-0 max-sm:mr-auto max-sm:ml-0 mx-auto max-sm:w-[300px] max-sm:float-left"
+                : "mx-auto w-[75vw] h-auto float-left mb-8 mt-0 max-sm:w-[85vw]"
             }`}
           >
             <div
               className={` ${
                 alignment === "left"
-                  ? "w-[330px] mx-auto ml-0"
+                  ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                   : alignment === "right"
-                  ? "w-[450px] h-auto mx-auto mr-0"
-                  : "mx-auto w-[75vw] h-auto ml-0"
+                  ? "w-[450px] h-auto mx-auto mr-0 max-sm:mr-auto max-sm:ml-0 max-sm:w-[290px]"
+                  : "mx-auto w-[75vw] h-auto ml-0 max-lg:w-[85vw]"
               }`}
             >
               <Image
@@ -75,21 +76,21 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
                 // layout="intrinsic"
                 className={` ${
                   alignment === "left"
-                    ? "w-[330px] mx-auto"
+                    ? "w-[330px] mx-auto max-sm:w-[290px]"
                     : alignment === "right"
-                    ? "w-[450px] h-auto mx-auto"
-                    : "mx-auto w-[75vw] h-auto"
+                    ? "w-[450px] h-auto mx-auto max-sm:w-[290px]"
+                    : "mx-auto w-[75vw] h-auto max-lg:w-[85vw]"
                 }`}
               />
             </div>
             {image.description !== "" && (
               <div
-                className={` border-l-medium bg-white border-l-[#FF7A34] text-center italic ${
+                className={` border-l-medium border-l-[#FF7A34] text-center italic px-[20px] py-[22px] bg-white ${
                   alignment === "left"
-                    ? "w-[330px] mx-auto ml-0"
+                    ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                     : alignment === "right"
-                    ? "w-[450px] h-auto mx-auto mr-0"
-                    : "mx-auto w-[75vw] h-auto ml-0"
+                    ? "w-[450px] h-auto mx-auto mr-0 max-sm:mr-auto max-sm:ml-0 max-sm:w-[290px]"
+                    : "mx-auto w-[75vw] h-auto ml-0 max-lg:w-[85vw]"
                 }`}
               >
                 {image.description}
@@ -98,7 +99,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </div>
         )}
         {content !== "" && (
-          <p className="blog-container w-[75vw] text-left font-normal text-base my-2">
+          <p className="blog-container w-[75vw] text-left font-normal text-lg my-2">
             {content.split("\r\n").map((line, index) => (
               <React.Fragment key={index}>
                 {line}
@@ -108,8 +109,10 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </p>
         )}
         {quote !== "" && (
-          <div>
-            <div className="text-xl italic font-semibold text-center py-5 my-5 border-y-medium ">
+          <div className="flex gap-[50px]">
+            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
+            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
+            <div className="text-4xl italic font-semibold text-center py-5 my-5 border-y-medium ">
               {quote}
             </div>
           </div>
