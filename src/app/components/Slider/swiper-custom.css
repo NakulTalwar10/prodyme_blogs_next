@@ -1,0 +1,67 @@
+.swiper-button-prev {
+  /* Use the path to your new icon image */
+  /* background-image: url('../../../../public/images/left.svg'); */
+  /* Adjust width and height as needed */
+  content: url("../../../../public/images/left.svg");
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  /* Set the icon color to white */
+  fill: #fff;
+  /* Optional: Center the icon */
+  background-position: center;
+  background-repeat: no-repeat;
+    transition: box-shadow 0.3s ease; /* Add transition for smoother effect */
+}
+.swiper-button-next {
+  /* Use the path to your new icon image */
+  /* background-image: url('../../../../public/images/right.svg'); */
+  /* Adjust width and height as needed */
+  content: url("../../../../public/images/right.svg");
+  /* Adjust width and height as needed */
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  /* Set the icon color to white */
+  color: white;
+  /* Optional: Center the icon */
+  background-position: center;
+  background-repeat: no-repeat;
+    transition: box-shadow 0.3s ease; /* Add transition for smoother effect */
+}
+
+/* Styling for enabled state */
+.swiper-button-next:not(.swiper-button-disabled),
+.swiper-button-prev:not(.swiper-button-disabled) {
+  background-color: #ff7a34; /* Enabled background color */
+  /* Adjust other styles as needed */
+    width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  /* Set the icon color to white */
+  color: white;
+  
+  /* Optional: Center the icon */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Styling for disabled state */
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  background-color: #c9c8c8; /* Disabled background color */
+  /* Adjust other styles as needed */
+    width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  /* Set the icon color to white */
+  color: white;
+  /* Optional: Center the icon */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Add light orange hue on hover */
+}

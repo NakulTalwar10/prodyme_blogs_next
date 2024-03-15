@@ -28,11 +28,11 @@ const BlogsSidebar = () => {
   return (
     <div className={`bg-black md:w-36 lg:w-48 px-5 min-h-screen flex flex-col justify-start items-center md:block ${isVisible ? 'w-full lg:w-48' : 'w-12'}`}>
 
-      <button onClick={toggleSidebar} className={`mt-32 md:hidden  text-white text-2xl p-2 top-0 ${isVisible ? 'fixed' : 'fixed'}`}>
+      <button onClick={toggleSidebar} className={`mt-32 md:hidden  text-white text-2xl p-2 top-0 ${isVisible ? 'sticky top-[100px] max-sm:top-[150px]' : 'sticky top-[100px] max-sm:top-[150px]'}`}>
         <BsLayoutSidebarInset />
       </button>
 
-      <div className={`lg:fixed mt-24 md:block ${isVisible ? 'fixed' : 'hidden'}`}>
+      <div className={`lg:sticky top-[100px] max-sm:top-[200px] mt-24 md:block ${isVisible ? 'sticky top-[100px] max-sm:top-[200px]' : 'hidden'}`}>
         <h3 className="text-white text-md lg:text-xl md:mt-20 text-center">Category Tree</h3>
         <hr className="mt-4 mx-4" />
         <div className="px-2">

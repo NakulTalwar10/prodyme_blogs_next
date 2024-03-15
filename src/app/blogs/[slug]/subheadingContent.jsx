@@ -44,7 +44,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
         )}
         {!isSub && subHeading !== "" && (
           // for heading
-          <div className="text-4xl font-semibold my-2 text-left  ">
+          <div className="text-4xl font-semibold my-2 text-left max-sm:text-3xl  ">
             {subHeading}
           </div>
         )}
@@ -85,7 +85,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
             </div>
             {image.description !== "" && (
               <div
-                className={` border-l-medium border-l-[#FF7A34] text-center italic px-[20px] py-[22px] bg-white ${
+                className={` border-l-medium border-l-[#FF7A34] text-center text-base italic px-[20px] py-[22px] bg-white ${
                   alignment === "left"
                     ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                     : alignment === "right"
@@ -99,7 +99,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </div>
         )}
         {content !== "" && (
-          <p className="blog-container w-[75vw] text-left font-normal text-lg my-2">
+          <p className="blog-container w-[75vw] max-sm:w-[90vw] max-sm:text-base text-left font-normal text-lg my-2">
             {content.split("\r\n").map((line, index) => (
               <React.Fragment key={index}>
                 {line}
@@ -112,7 +112,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           <div className="flex gap-[50px]">
             {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
             {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
-            <div className="text-4xl italic font-semibold text-center py-5 my-5 border-y-medium ">
+            <div className="text-4xl max-sm:text-2xl italic font-semibold text-center py-5 my-5 border-y-medium ">
               {quote}
             </div>
           </div>
