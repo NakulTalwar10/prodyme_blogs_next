@@ -53,19 +53,19 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           <div
             className={`my-3 ${
               alignment === "left"
-                ? "float-left w-[350px] mx-auto"
+                ? "float-left w-[350px] mx-auto max-sm:w-[300px]"
                 : alignment === "right"
-                ? "float-right w-[470px] h-auto mr-0 mx-auto "
-                : "mx-auto w-[75vw] h-auto float-left mb-8 mt-0"
+                ? "float-right w-[470px] h-auto mr-0 max-sm:mr-auto max-sm:ml-0 mx-auto max-sm:w-[300px] max-sm:float-left"
+                : "mx-auto w-[75vw] h-auto float-left mb-8 mt-0 max-sm:w-[85vw]"
             }`}
           >
             <div
               className={` ${
                 alignment === "left"
-                  ? "w-[330px] mx-auto ml-0"
+                  ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                   : alignment === "right"
-                  ? "w-[450px] h-auto mx-auto mr-0"
-                  : "mx-auto w-[75vw] h-auto ml-0"
+                  ? "w-[450px] h-auto mx-auto mr-0 max-sm:mr-auto max-sm:ml-0 max-sm:w-[290px]"
+                  : "mx-auto w-[75vw] h-auto ml-0 max-lg:w-[85vw]"
               }`}
             >
               <Image
@@ -76,10 +76,10 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
                 // layout="intrinsic"
                 className={` ${
                   alignment === "left"
-                    ? "w-[330px] mx-auto"
+                    ? "w-[330px] mx-auto max-sm:w-[290px]"
                     : alignment === "right"
-                    ? "w-[450px] h-auto mx-auto"
-                    : "mx-auto w-[75vw] h-auto"
+                    ? "w-[450px] h-auto mx-auto max-sm:w-[290px]"
+                    : "mx-auto w-[75vw] h-auto max-lg:w-[85vw]"
                 }`}
               />
             </div>
@@ -87,10 +87,10 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
               <div
                 className={` border-l-medium border-l-[#FF7A34] text-center italic px-[20px] py-[22px] bg-white ${
                   alignment === "left"
-                    ? "w-[330px] mx-auto ml-0"
+                    ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                     : alignment === "right"
-                    ? "w-[450px] h-auto mx-auto mr-0"
-                    : "mx-auto w-[75vw] h-auto ml-0"
+                    ? "w-[450px] h-auto mx-auto mr-0 max-sm:mr-auto max-sm:ml-0 max-sm:w-[290px]"
+                    : "mx-auto w-[75vw] h-auto ml-0 max-lg:w-[85vw]"
                 }`}
               >
                 {image.description}

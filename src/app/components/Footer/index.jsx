@@ -56,8 +56,8 @@ const Footer = () => {
     return (
         <div>
             <footer className="sticky footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
-                <div className="flex justify-around  p-20">
-                    <nav>
+                <div className="flex justify-around  p-20 max-sm:p-10 flex-wrap">
+                    <nav className=''>
                         <ul className="flex space-x-4">
                             {socialLinks.map((link, index) => (
                                 <li key={index}>

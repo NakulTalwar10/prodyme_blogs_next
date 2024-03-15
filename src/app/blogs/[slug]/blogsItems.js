@@ -163,7 +163,7 @@ const BlogsItems = ({ slug }) => {
     <div className="font-roboto">
       {blog ? (
         <div>
-          <div className="flex bg-[#F8F8F8] mt-[90px]">
+          <div className="flex bg-[#F8F8F8] mt-[80px] max-sm:mt-[150px] max-sm:w-[100vw]">
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] h-[100vh] fixed left-0 max-lg:hidden "></div>
 
             <div className="bg-[#2A2A2A] flex flex-col  w-[200px] text-[#F4F4F4] max-lg:hidden ">
@@ -180,7 +180,7 @@ const BlogsItems = ({ slug }) => {
                 })}
               </div>
             </div>
-            <div className="flex flex-col mx-5">
+            <div className="flex flex-col mx-5 max-sm:mx-0">
               <div className="blog-container pl-[12px] object-left">
                 <h1
                   className="font-bold text-[42px] w-[75vw] my-2"
@@ -211,7 +211,7 @@ const BlogsItems = ({ slug }) => {
                     alt="image"
                     width={100}
                     height={100}
-                    className="w-[75vw] h-[400px] object-cover my-5 "
+                    className="w-[75vw] max-lg:w-[85vw] h-[400px] object-cover my-5 "
                   />
                 ) : (
                   <div>insert defalut image</div>
