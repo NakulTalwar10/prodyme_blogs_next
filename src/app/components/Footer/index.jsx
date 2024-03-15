@@ -54,10 +54,10 @@ const Footer = () => {
     ];
 
     return (
-        <div>
-            <footer className="sticky footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
-                <div className="flex justify-around  p-20">
-                    <nav>
+        <div className=''>
+            <footer className=" footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
+                <div className="flex flex-col lg:flex-row justify-around p-4 lg:p-20">
+                    <nav className="mb-4 lg:mb-0">
                         <ul className="flex space-x-4">
                             {socialLinks.map((link, index) => (
                                 <li key={index}>
@@ -69,7 +69,7 @@ const Footer = () => {
                         </ul>
                     </nav>
                     <nav>
-                        <ul className="flex space-x-4 text-white">
+                        <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 text-white">
                             {intLinks.map((link, index) => (
                                 <li key={index}>
                                     <a href={link.path}>{link.name}</a>
@@ -99,8 +99,7 @@ const Footer = () => {
                 </article>
             </footer>
         </div>
-
     )
 }
 
-export default Footer
+export default Footer;
