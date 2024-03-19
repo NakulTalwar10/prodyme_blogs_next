@@ -15,10 +15,10 @@ const ProductsPage = () => {
         // setCategory(response.data.combinedData || [])       use after sometimes when we get more data from api
     }
 
-    useEffect(() => {
-        fetchCategory()
-        setCategory(mockCategories)      //testing purpose
-    }, [])
+    // useEffect(() => {
+    //     fetchCategory()
+    //     setCategory(mockCategories)     
+    // }, [])
 
     const mockCategories = [
         { _id: '1', categoryname: 'Kitchen' },

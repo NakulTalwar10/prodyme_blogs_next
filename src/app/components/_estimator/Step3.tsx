@@ -343,7 +343,9 @@ const Step3: React.FC<step3Type> = ({
                         onClick={() => handleOptions(d)}
                         className="transition-transform transform hover:scale-110 w-[30px] object-contain"
                       >
-                        <img
+                        <Image
+                        width={1000}
+                        height={1000}
                           src="images/pen.svg"
                           alt="Detailed Description"
                           className="w-[20px] h-auto"
@@ -353,7 +355,9 @@ const Step3: React.FC<step3Type> = ({
                         onClick={() => showDesc(d)}
                         className="transition-transform transform hover:scale-110 w-[30px] object-contain"
                       >
-                        <img
+                        <Image
+                        width={1000}
+                        height={1000}
                           src="images/info.svg"
                           alt="Detailed Description"
                           className="w-[20px] h-auto"

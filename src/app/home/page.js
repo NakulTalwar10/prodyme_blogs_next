@@ -3,9 +3,6 @@ import React, { useState, useEffect, use } from 'react'
 import '../globals.css'
 import Estimator from '../components/_estimator/Estimator';
 import Contact from '../components/Contact';
-import About from '../components/_about/page';
-import Work from '../components/Work'
-import Services from '../components/Services';
 import { Element } from 'react-scroll';
 import { Dialog, DialogTitle, DialogContent, Button } from '@mui/material';
 import Image from 'next/image';

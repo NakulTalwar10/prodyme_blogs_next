@@ -53,6 +53,7 @@ const BlogsItems = ({ slug }) => {
     if (category !== null) {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
   // const {slug} =params;
   // console.log(slug);
@@ -114,6 +115,7 @@ const BlogsItems = ({ slug }) => {
     };
 
     fetchBlog();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // // useeffect for formatting the content into seperate blocks

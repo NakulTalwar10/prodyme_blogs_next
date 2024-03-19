@@ -28,6 +28,7 @@ const ProductSlider = ({ category, tags }) => {
   useEffect(() => {
     fetchData();
     console.log(tags);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, tags]);
 
   const fetchData = async () => {

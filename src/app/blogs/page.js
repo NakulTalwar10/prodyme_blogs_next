@@ -118,7 +118,7 @@ const BlogsPage = () => {
                         className="text-xl lg:text-xl tracking-widest font-semibold"
                         dangerouslySetInnerHTML={{ __html: post.title }}
                       ></h4>
-                      <p className="text-gray-400 mt-2 text-[16px]">
+                      <p className="text-gray-500 mt-2 text-[16px]">
                         {formatDate(post.date)}
                       </p>
                       <div>
@@ -166,7 +166,7 @@ const BlogsPage = () => {
                           {postIndex === 0 ? (
                             <div className="lg:relative  lg:block">
                               <div
-                                className="w-full  lg:h-[314px]  bg-cover bg-center"
+                                className="w-full h-[200px] lg:h-[314px]  bg-cover bg-center"
                                 style={{
                                   backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(${post?.acf?.thumbnail?.url ||
                                     "./images/cardimages.jpg"
@@ -180,7 +180,7 @@ const BlogsPage = () => {
                                     __html: post.title,
                                   }}
                                 ></h4>
-                                <p className="lg:text-white text-gray-400 mt-2">
+                                <p className="lg:text-white text-gray-500 mt-2">
                                   {formatDate(post.date)}
                                 </p>
                                 <p className="lg:pr-[15%] text-gray-900 text-md tracking-widest lg:text-white  font-normal my-2 lg:font-medium">

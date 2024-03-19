@@ -34,7 +34,9 @@ export const SideBar: React.FC<stepType> = ({ step, setStep, buildUpArea, qualit
             step === 1 ? " hidden" : "w-[26px] h-[26px] relative max-sm:hidden"
           }
         >
-          <img
+          <Image
+          width={1000}
+          height={1000}
             className="w-[26px] h-[26px] left-0 top-0 object-cover absolute rounded-full border-2 border-black"
             src="images/ok.svg"
             alt="ok"
@@ -56,7 +58,9 @@ export const SideBar: React.FC<stepType> = ({ step, setStep, buildUpArea, qualit
             step <= 2 ? " hidden" : "w-[26px] h-[26px] relative max-sm:hidden"
           }
         >
-          <img
+          <Image
+          width={1000}
+          height={1000}
             className="w-[26px] h-[26px] left-0 top-0 object-cover absolute rounded-full border-2 border-black"
             src="images/ok.svg"
             alt="ok"
@@ -78,7 +82,9 @@ export const SideBar: React.FC<stepType> = ({ step, setStep, buildUpArea, qualit
             step <= 3 ? " hidden" : "w-[26px] h-[26px] relative max-sm:hidden "
           }
         >
-          <img
+          <Image
+          width={1000}
+          height={1000}
             className="w-[26px] h-[26px] object-cover left-0 top-0 absolute rounded-full border-2 border-black"
             src="images/ok.svg"
             alt="ok"
