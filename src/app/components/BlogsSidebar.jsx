@@ -10,7 +10,7 @@ const BlogsSidebar = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/blogs");
+      const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -28,11 +28,14 @@ const BlogsSidebar = () => {
   return (
     <div className={`bg-black md:w-36 lg:w-48 px-5 min-h-screen flex flex-col justify-start items-center md:block ${isVisible ? 'w-full lg:w-48' : 'w-12'}`}>
 
-      <button onClick={toggleSidebar} className={`mt-32 md:hidden  text-white text-2xl p-2 top-0 ${isVisible ? 'sticky top-[100px] max-sm:top-[150px]' : 'sticky top-[100px] max-sm:top-[150px]'}`}>
+      <button onClick={toggleSidebar} className={`mt-32 md:hidden top-[150px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? 'hidden' : 'sticky'}`}>
         <BsLayoutSidebarInset />
       </button>
 
-      <div className={`lg:sticky top-[100px] max-sm:top-[200px] mt-24 md:block ${isVisible ? 'sticky top-[100px] max-sm:top-[200px]' : 'hidden'}`}>
+      <div className={`lg:sticky top-[200px] flex flex-col items-center lg:top-[100px]  md:block ${isVisible ? 'sticky' : 'hidden'}`}>
+        <button onClick={toggleSidebar} className={` md:hidden top-[100px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? '' : 'hidden'}`}>
+          <BsLayoutSidebarInset />
+        </button>
         <h3 className="text-white text-md lg:text-xl md:mt-20 text-center">Category Tree</h3>
         <hr className="mt-4 mx-4" />
         <div className="px-2">

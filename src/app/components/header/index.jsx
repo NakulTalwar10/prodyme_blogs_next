@@ -25,16 +25,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const navPages = [
     {
-        name: "Builder",
-        link: "/planner",
+        name: "Home",
+        link: "/",
     },
     {
         name: "Products",
-        link: "/category",
+        link: "/",
     },
     {
         name: "Blogs",
-        link: "/blogs",
+        link: "/",
     },
 ];
 
@@ -58,7 +58,7 @@ const Header = ({ dis }) => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (token) {
-            axios.get('http://localhost:5000/auth/user', {
+            axios.get('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/user', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -105,7 +105,7 @@ const Header = ({ dis }) => {
                         </Link>
                         {!isMobile && (
                             <>
-                                <nav className="flex flex-wrap items-center">
+                                <nav className="flex flex-wrap items-center mx-4">
                                     {navPages.map((page) => (
                                         <Link href={page.link} key={page.name}>
                                             <button className="mx-2 font-medium hover:font-normal text-orange-400 text-lg">{page.name}</button>

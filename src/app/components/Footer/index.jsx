@@ -54,8 +54,8 @@ const Footer = () => {
     ];
 
     return (
-        <div className=''>
-            <footer className=" z-[1000] footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
+        <div className='lg:top-[100px] sticky'>
+            <footer className=" footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
                 <div className="flex flex-col lg:flex-row justify-around p-4 lg:p-20">
                     <nav className="mb-4 lg:mb-0">
                         <ul className="flex space-x-4">

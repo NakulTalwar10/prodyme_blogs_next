@@ -24,7 +24,7 @@ const Auth = ({updateUser}) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/auth/register', { ...user });
+            const response = await axios.post('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/register', { ...user });
             setIsLogin(true);
             setUser({ fullname: "", email: "", password: "" });
             toast.success("Signup successful. Please log in.");
@@ -38,7 +38,7 @@ const Auth = ({updateUser}) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/auth/login', { ...user });
+            const response = await axios.post('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/login', { ...user });
             const { token } = response.data;
 
             if (!token) {
@@ -74,8 +74,9 @@ const Auth = ({updateUser}) => {
                         <input type="email" className="rounded-full border border-gray-300 outline-none px-4 py-3" placeholder="Email" name="email" value={user.email} onChange={handleChange} />
 
                         <div className="relative">
-                            <input type={showPassword ? "text" : "password"} className="rounded-full border border-gray-300 outline-none px-4 py-3 pr-12" placeholder="Password" name="password" value={user.password} onChange={handleChange} />
-                            <button type="button" className="absolute top-4 right-5 text-lg" onClick={togglePasswordVisibility}>
+
+                            <input type={showPassword ? "text" : "password"} className="rounded-full border border-gray-300 outline-none px-4 py-3 lg:pr-20" placeholder="Password" name="password" value={user.password} onChange={handleChange} />
+                            <button type="button" className="absolute top-4 right-5 pr-5 lg:pr-0 text-lg" onClick={togglePasswordVisibility}>
                                 {showPassword ?<FaRegEye/>  :  <GrFormViewHide/>}
                             </button>
                         </div>
@@ -89,8 +90,8 @@ const Auth = ({updateUser}) => {
                         <input type="text" className="rounded-full border border-gray-300 outline-none px-4 py-3" placeholder="Full Name" name="fullname" value={user.fullname} onChange={handleChange} />
                         <input type="email" className="rounded-full border border-gray-300 outline-none px-4 py-3" placeholder="Email" name="email" value={user.email} onChange={handleChange} />
                         <div className="relative">
-                            <input type={showPassword ? "text" : "password"} className="rounded-full border border-gray-300 outline-none px-4 py-3 pr-12" placeholder="Password" name="password" value={user.password} onChange={handleChange} />
-                            <button type="button" className="absolute top-4 right-5 text-lg" onClick={togglePasswordVisibility}>
+                            <input type={showPassword ? "text" : "password"} className="rounded-full border border-gray-300 outline-none px-4 py-3 lg:pr-20" placeholder="Password" name="password" value={user.password} onChange={handleChange} />
+                            <button type="button" className="absolute top-4 right-5 pr-5 lg:pr-0 text-lg" onClick={togglePasswordVisibility}>
                                 {showPassword ? <FaRegEye/> :<GrFormViewHide/> }
                             </button>
                         </div>
