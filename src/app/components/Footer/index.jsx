@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
+import Image from 'next/image';
 
 const Footer = () => {
     const socialLinks = [
@@ -62,7 +63,8 @@ const Footer = () => {
                             {socialLinks.map((link, index) => (
                                 <li key={index}>
                                     <a href={link.path} target="_blank" rel="noopener noreferrer">
-                                        <img src={link.icon} alt={link.name} className="h-8 w-8" />
+                                        <Image width={1000}
+                                            height={1000} src={link.icon} alt={link.name} className="h-8 w-8" />
                                     </a>
                                 </li>
                             ))}

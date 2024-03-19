@@ -9,6 +9,7 @@ import Paginations from "../../components/Paginations";
 import Search from "../../components/Search";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import url from "../../../url";
+import Image from "next/image";
 
 
 const CategoryBlogsPage = ({ selectedCategory }) => {
@@ -92,9 +93,11 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                             <div className="grid grid-cols-3 gap-5">
                                 {filteredPosts.map((post, index) => (
                                     <div key={index} className="my-5">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
+                                  
+                                        <Image
                                             alt={post.title}
+                                            width={1000}
+                                            height={1000}
                                             className="w-full object-cover h-[200px]"
                                             src={post?.acf?.thumbnail?.url || "../images/cardimages.jpg"}
                                         />
@@ -159,9 +162,11 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                         </div>
                                                     ) : (
                                                         <>
-                                                        {/*  eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img
+                                                       
+                                                            <Image
                                                                 alt={post.title}
+                                                                width={1000}
+                                            height={1000}
                                                                 className="w-full object-cover h-[200px] "
                                                                 src={post?.acf?.thumbnail?.url || "../images/cardimages.jpg"}
                                                             />

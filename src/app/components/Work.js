@@ -9,32 +9,32 @@ const Work = () => {
     const [hoveredService, setHoveredService] = useState(null);
     const services = [
         {
-            img: "https://static.wixstatic.com/media/84770f_59a5515ed0ea48efb3f1a7e3ce3098cc~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_59a5515ed0ea48efb3f1a7e3ce3098cc~mv2.jpeg",
+            Image: "https://static.wixstatic.com/media/84770f_59a5515ed0ea48efb3f1a7e3ce3098cc~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_59a5515ed0ea48efb3f1a7e3ce3098cc~mv2.jpeg",
             name: "Kitchens",
             route: '/kitchens'
         },
         {
-            img: "https://static.wixstatic.com/media/84770f_734548bad9a64870bcdf536d143a67e9~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_734548bad9a64870bcdf536d143a67e9~mv2.jpeg",
+            Image: "https://static.wixstatic.com/media/84770f_734548bad9a64870bcdf536d143a67e9~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_734548bad9a64870bcdf536d143a67e9~mv2.jpeg",
             name: "Baithrooms",
             route: '/bathrooms'
         },
         {
-            img: "https://static.wixstatic.com/media/84770f_90ea2ac28d32475998f8280f84c837c9~mv2.jpg/v1/fill/w_284,h_284,q_90/84770f_90ea2ac28d32475998f8280f84c837c9~mv2.jpg",
+            Image: "https://static.wixstatic.com/media/84770f_90ea2ac28d32475998f8280f84c837c9~mv2.jpg/v1/fill/w_284,h_284,q_90/84770f_90ea2ac28d32475998f8280f84c837c9~mv2.jpg",
             name: "Interiors",
             route: '/interiors'
         },
         {
-            img: "https://static.wixstatic.com/media/d30b06be6cb14976be28fdf001f2b34c.jpg/v1/fill/w_284,h_284,q_90/d30b06be6cb14976be28fdf001f2b34c.jpg",
+            Image: "https://static.wixstatic.com/media/d30b06be6cb14976be28fdf001f2b34c.jpg/v1/fill/w_284,h_284,q_90/d30b06be6cb14976be28fdf001f2b34c.jpg",
             name: "Additions",
             route: '/additions'
         },
         {
-            img: "https://static.wixstatic.com/media/84770f_619db8cc54974cb890cb1241f862df08~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_619db8cc54974cb890cb1241f862df08~mv2.jpeg",
+            Image: "https://static.wixstatic.com/media/84770f_619db8cc54974cb890cb1241f862df08~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_619db8cc54974cb890cb1241f862df08~mv2.jpeg",
             name: "Exteriors",
             route: '/exteriors'
         },
         {
-            img: "https://static.wixstatic.com/media/84770f_09ff25b3874d46fab6254709c0a61fbb~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_09ff25b3874d46fab6254709c0a61fbb~mv2.jpeg",
+            Image: "https://static.wixstatic.com/media/84770f_09ff25b3874d46fab6254709c0a61fbb~mv2.jpeg/v1/fill/w_284,h_284,q_90/84770f_09ff25b3874d46fab6254709c0a61fbb~mv2.jpeg",
             name: "Sunrooms",
             route: '/sunrooms'
         },
@@ -60,7 +60,7 @@ const Work = () => {
                                 onMouseOver={() => setHoveredService(index)}
                                 onMouseOut={() => setHoveredService(null)}
                             >
-                                <img src={service.img} alt={service.name}  className="w-full h-auto" />
+                                <Image src={service.Image} alt={service.name} width={1000} height={1000} className="w-full h-auto" />
                                 {hoveredService === index && (
                                     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white">
                                         <span className="text-center font-bold text-xl">

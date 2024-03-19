@@ -3,6 +3,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 const ProductsBackground = () => {
     const images = [
@@ -39,8 +40,8 @@ const ProductsBackground = () => {
             {images.map((image, index) => (
                 <div key={index}>
                     <div style={{ position: 'relative' }}>
-                    {/*  eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={image.image} className="w-full h-[274px] object-cover" alt="Background" />
+                    
+                        <Image src={image.image} width={1000} height={1000} className="w-full h-[274px] object-cover" alt="Background" />
                         <div style={{
                             position: 'absolute',
                             top: 0,
