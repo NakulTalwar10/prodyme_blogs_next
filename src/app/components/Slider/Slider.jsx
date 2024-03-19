@@ -57,7 +57,7 @@ const ProductSlider = ({ category, tags }) => {
 
   return (
     <div className="bg-[#F8F8F8]  justify-center items-center text-center p-3 py-0 relative m-0">
-      <div className="bg-[#2A2A2A] w-[200px] absolute left-0 h-full"></div>
+      <div className="bg-[#2A2A2A] w-[182px] absolute left-0 h-full"></div>
       <span className="font-bold text-[42px] m-3 max-sm:text-3xl">
         Products in this Blog
       </span>
