@@ -1,10 +1,10 @@
+import Image from "next/image";
 import React from "react";
 
 const BlogsBackground = () => {
   return (
     <div style={{ position: 'relative' }}>
-    {/*  eslint-disable-next-line @next/next/no-img-element */}
-      <img src="../images/construction.jpg" className="w-full h-[300px] object-cover" alt="Background" />
+      <Image src="../images/construction.jpg" width={1000} height={1000}  className="w-full h-[300px] object-cover" alt="Background" />
       <div style={{
         position: 'absolute',
         top: 0,

@@ -27,7 +27,7 @@ const Footer = () => {
                             <div>
                                 <div className='flex justify-start items-center'>
                                     <div>
-                                        <img src="/images/logo.png" alt="" className='w-[100px] h-auto' />
+                                        <Image src="/images/logo.png" width={1000} height={1000}  alt="" className='w-[100px] h-auto' />
                                     </div>
                                     <div>
                                         <h3 className='text-white  text-center py-5 text-xl font-roboto'>Prodyme homes</h3>
@@ -88,7 +88,7 @@ const Footer = () => {
                         <div>
                             <ul className="flex justify-center items-center my-5">
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/facebook.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
@@ -96,7 +96,7 @@ const Footer = () => {
                                     />
                                 </li>
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/instagram.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
@@ -104,7 +104,7 @@ const Footer = () => {
                                     />
                                 </li>
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/Vector.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
@@ -156,7 +156,7 @@ const Footer = () => {
 
                             <div className='flex flex-col '>
                                 <div className='mx-5'>
-                                    <img src="/images/logo.png" alt="prodyme homes" className='w-[100px] h-auto object-cover' />
+                                    <Image src="/images/logo.png" alt="prodyme homes" className='w-[100px] h-auto object-cover' />
                                     
                                 </div>
 
@@ -184,21 +184,21 @@ const Footer = () => {
                         <div>
                             <ul className="flex my-5">
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/facebook.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
                                     />
                                 </li>
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/instagram.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
                                     />
                                 </li>
                                 <li className="mx-5 ">
-                                    <img
+                                    <Image
                                         src="/images/Vector.png"
                                         alt="prodyme homes"
                                         className='h-auto w-[38px]'
