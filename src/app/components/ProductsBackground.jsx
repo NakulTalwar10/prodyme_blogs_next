@@ -39,6 +39,7 @@ const ProductsBackground = () => {
             {images.map((image, index) => (
                 <div key={index}>
                     <div style={{ position: 'relative' }}>
+                    {/*  eslint-disable-next-line @next/next/no-img-element */}
                         <img src={image.image} className="w-full h-[274px] object-cover" alt="Background" />
                         <div style={{
                             position: 'absolute',

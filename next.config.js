@@ -4,8 +4,9 @@ const nextConfig = {
     images: {
         domains: ["amansamant23.files.wordpress.com"],
         domains: ['images.unsplash.com','static.wixstatic.com' ,'example.com', 'anotherdomain.com','media.istockphoto.com'],
-        unoptimized: true
+        unoptimized:true
       },
+      
 };
 
 module.exports = nextConfig

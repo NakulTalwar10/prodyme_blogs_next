@@ -1,31 +1,57 @@
 import * as React from 'react';
-import Pagination from '@mui/material/Pagination';
-// import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-
-const CustomPagination = styled(Pagination)(({ theme }) => ({
-  '& .MuiPaginationItem-icon': {
-    color: theme.palette.primary.main, 
-  },
-}));
-
-const Paginations = ({ postsPerPage, totalCategories, paginate }) => {
+const Paginations = ({ postsPerPage, totalCategories, currentPage, paginate }) => {
   const pageCount = Math.ceil(totalCategories / postsPerPage);
 
-  const handlePageChange = (event, value) => {
-    paginate(value);
+  const handleNextPage = () => {
+    if (currentPage < pageCount) {
+      paginate(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
+
+  const handleGoToPage = (event) => {
+    let pageNumber = parseInt(event.target.value);
+
+    if (!pageNumber || pageNumber < 1) {
+      pageNumber = 1;
+    } else if (pageNumber > pageCount) { 
+      pageNumber = pageCount;
+    }
+    paginate(pageNumber);
+  };
+
+  const handleInputChange = (event) => {
+    let pageNumber = parseInt(event.target.value);
+    if (pageNumber < 1) {
+      pageNumber = 1;
+    } else if (pageNumber > pageCount) {
+      pageNumber = pageCount;
+    }
+    paginate(pageNumber);
   };
 
   return (
-    <Stack spacing={2} justifyContent="center" alignItems="center">
-      <Pagination
-      variant="outlined" color="primary"
-        count={pageCount}
-        
-        onChange={handlePageChange}
-      />
+    <Stack spacing={2} direction="row" justifyContent="center" alignItems="center">
+      <Button onClick={handlePreviousPage} className={`text-black text-lg ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`} disabled={currentPage === 1}>
+        <MdKeyboardArrowLeft />
+      </Button>
+      <Typography>
+        <input type="number" min="1" max={pageCount} className='text-center' value={currentPage} onChange={handleInputChange} onBlur={handleGoToPage} />
+        {' '}of {pageCount}
+      </Typography>
+      <Button onClick={handleNextPage} className={`text-black text-lg ${currentPage === pageCount ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`} disabled={currentPage === pageCount}>
+        <MdKeyboardArrowRight/>
+      </Button>
     </Stack>
   );
 };

@@ -28,10 +28,10 @@ const navPages = [
         name: "Home",
         link: "/",
     },
-    // {
-    //     name: "Products",
-    //     link: "/",
-    // },
+    {
+        name: "Products",
+        link: "/",
+    },
     {
         name: "Blogs",
         link: "/blogs",
@@ -108,7 +108,7 @@ const Header = ({ dis }) => {
                                 <nav className="flex flex-wrap items-center mx-4">
                                     {navPages.map((page) => (
                                         <Link href={page.link} key={page.name}>
-                                            <button className="mx-2 font-medium hover:font-normal text-orange-400 text-lg">{page.name}</button>
+                                            <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">{page.name}</button>
                                         </Link>
                                     ))}
                                 </nav>
@@ -153,10 +153,10 @@ const Header = ({ dis }) => {
                         )}
                     {isMobile && (
                         <>
-                            <nav className="flex flex-wrap items-center">
+                            <nav className="flex flex-wrap items-center mt-2">
                                 {navPages.map((page) => (
                                     <Link href={page.link} key={page.name}>
-                                        <button className="mx-2 font-medium hover:font-normal text-orange-400 text-lg">{page.name}</button>
+                                        <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">{page.name}</button>
                                     </Link>
                                 ))}
                             </nav>

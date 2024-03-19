@@ -65,7 +65,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
 
 
     return (
-        <div className="flex mt-20">
+        <div className="flex mt-20 bg-[#f8f8f8]">
             <BlogsSidebar />
             <div className="flex-1 overflow-y-auto">
                 <BlogsBackground />
@@ -76,6 +76,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                         <Paginations
                             totalCategories={blogs.flatMap(blog => blog.posts).length}
                             postsPerPage={postsPerPage}
+                            currentPage={currentPage}
                             paginate={paginate}
                         />
                     </div>
@@ -91,6 +92,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                             <div className="grid grid-cols-3 gap-5">
                                 {filteredPosts.map((post, index) => (
                                     <div key={index} className="my-5">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             alt={post.title}
                                             className="w-full object-cover h-[200px]"
@@ -98,7 +100,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                         />
                                         <div className="text-small justify-between">
                                             <h4 className="text-xl lg:text-xl tracking-widest font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
-                                            <p className="text-default-600 mt-2 text-[16px]">{formatDate(post.date)}</p>
+                                            <p className="text-gray-400 mt-2 text-[16px]">{formatDate(post.date)}</p>
                                             <div>
                                                 {stripHtmlTags(post.excerpt).length > 50 ? (
                                                     <div>
@@ -143,7 +145,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                             ></div>
                                                             <div className="lg:absolute inset-0 flex flex-col justify-center items-start lg:text-white lg:px-5">
                                                                 <h4 className="text-xl lg:pr-[15%] tracking-widest lg:text-2xl font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
-                                                                <p className="lg:text-white text-default-600 mt-2 text-[16px]">{formatDate(post.date)}</p>
+                                                                <p className="lg:text-white text-gray-400 mt-2 text-[16px]">{formatDate(post.date)}</p>
                                                                 <p className="lg:pr-[15%] text-gray-900 text-md tracking-widest lg:text-white  font-normal my-2 lg:font-medium">
                                                                     {stripHtmlTags(post.excerpt).substring(0, 250)}...
                                                                 </p>
@@ -157,6 +159,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                         </div>
                                                     ) : (
                                                         <>
+                                                        {/*  eslint-disable-next-line @next/next/no-img-element */}
                                                             <img
                                                                 alt={post.title}
                                                                 className="w-full object-cover h-[200px] "
@@ -164,7 +167,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                                                             />
                                                             <div className="text-small justify-between">
                                                                 <h4 className="text-xl lg:text-xl tracking-widest font-semibold" dangerouslySetInnerHTML={{ __html: post.title }}></h4>
-                                                                <p className="text-default-600 mt-2">{formatDate(post.date)}</p>
+                                                                <p className="text-gray-400 mt-2">{formatDate(post.date)}</p>
                                                                 <div className="">
                                                                     {stripHtmlTags(post.excerpt).length > 150 ? (
                                                                         <div>
@@ -196,11 +199,13 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                         </section>
                     )}
                 </section>
-                <div className="p-5">
+                <div className="p-5 flex justify-end">
                     <Paginations
                         totalCategories={blogs.flatMap(blog => blog.posts).length}
                         postsPerPage={postsPerPage}
+                        currentPage={currentPage}
                         paginate={paginate}
+
                     />
                 </div>
             </div>
