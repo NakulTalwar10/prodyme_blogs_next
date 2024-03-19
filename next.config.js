@@ -3,7 +3,8 @@ const nextConfig = {
   // output:'export',
     images: {
         domains: ["amansamant23.files.wordpress.com"],
-        unoptimized:true,
+        domains: ['images.unsplash.com','static.wixstatic.com' ,'example.com', 'anotherdomain.com','media.istockphoto.com'],
+        unoptimized: true
       },
 };
 
