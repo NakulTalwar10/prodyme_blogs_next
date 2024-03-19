@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import quote from "../../../../public/images/quote/quote.png"
+import comma from "../../../../public/images/quote.svg"
 
 const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
   const [width, setWidth] = useState(0);
@@ -35,16 +35,16 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
     return (<></>);
   }else {
     return (
-      <div className="text-left ">
+      <div className="text-left  ">
         {isSub && subHeading !== "" && (
           // for subheading
-          <div className="text-2xl font-semibold my-2 text-left  ">
+          <div className="text-3xl text-[28px] font-bold my-2 text-left max-sm:text-3xl  ">
             {subHeading}
           </div>
         )}
         {!isSub && subHeading !== "" && (
           // for heading
-          <div className="text-4xl font-semibold my-2 text-left max-sm:text-3xl  ">
+          <div className="text-3xl text-[28px] font-bold my-2 text-left max-sm:text-3xl  ">
             {subHeading}
           </div>
         )}
@@ -85,7 +85,7 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
             </div>
             {image.description !== "" && (
               <div
-                className={` border-l-medium border-l-[#FF7A34] text-center text-base italic px-[20px] py-[22px] bg-white ${
+                className={` border-l-medium border-l-[#FF7A34] text-center text-base italic px-[20px] text-[#555555] py-[22px]  ${
                   alignment === "left"
                     ? "w-[330px] mx-auto ml-0 max-sm:w-[290px]"
                     : alignment === "right"
@@ -110,9 +110,21 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
         )}
         {quote !== "" && (
           <div className="flex gap-[50px]">
-            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
-            {/* <Image width={1000} height={1000} url={quote} alt='"' className="w-[25px] h-[52px]" /> */}
-            <div className="text-4xl max-sm:text-2xl italic font-semibold text-center py-5 my-5 border-y-medium ">
+            {/* <Image
+              width={1000}
+              height={1000}
+              url="./images/quote/quote.png"
+              alt="image"
+              className="w-[25px] h-[52px]"
+            />
+            <img
+              // width={1000}
+              // height={1000}
+              url="../../../../public/images/quote.svg"
+              alt="iamge"
+              className="w-[25px] h-[52px]"
+            /> */}
+            <div className="text-4xl text-[42px] max-sm:text-2xl italic font-normal text-center py-5 my-5 border-y-medium ">
               {quote}
             </div>
           </div>
