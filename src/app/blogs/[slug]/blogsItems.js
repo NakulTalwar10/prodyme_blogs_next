@@ -279,7 +279,7 @@ const BlogsItems = ({ slug }) => {
                       {/* block 2 heading and its content */}
                       <SubheadingContent
                         isSub={false}
-                        subHeading={blog.acf["block2_heading"]}
+                        subHeading={blog.acf["block2_heading1"]}
                         content={blog.acf["block2_content"]}
                         quote={blog.acf["block2_quote"]}
                         image={blog.acf["block2_image"]}
