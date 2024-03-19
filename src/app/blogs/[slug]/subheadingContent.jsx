@@ -35,16 +35,16 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
     return (<></>);
   }else {
     return (
-      <div className="text-left  ">
+      <div className="text-left  py-[30px]">
         {isSub && subHeading !== "" && (
           // for subheading
-          <div className="text-3xl text-[28px] font-bold my-2 text-left max-sm:text-3xl  ">
+          <div className="main text-3xl text-[28px] font-bold  text-left max-sm:text-3xl  ">
             {subHeading}
           </div>
         )}
-        {!isSub && subHeading !== "" && (
+        {!isSub && subHeading && subHeading !== "" && (
           // for heading
-          <div className="text-3xl text-[28px] font-bold my-2 text-left max-sm:text-3xl  ">
+          <div className="sub text-3xl text-[28px] font-bold my-2 text-left max-sm:text-3xl  ">
             {subHeading}
           </div>
         )}
@@ -130,9 +130,9 @@ const SubheadingContent = ({isSub ,subHeading, content, quote, image }) => {
           </div>
         )}
 
-        {(subHeading !== "" || content !== "" || quote !== "") && (
+        {/* {(subHeading !== "" || content !== "" || quote !== "") && (
           <div className="mb-8"></div>
-        )}
+        )} */}
       </div>
     );
   }
