@@ -12,7 +12,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Auth from '../Auth/Auth'
 import axios from "axios";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-
+import SearchSharpIcon from '@mui/icons-material/SearchSharp';
+import Typography from "@mui/material/Typography";
+import './header.css'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -38,11 +40,30 @@ const navPages = [
     },
 ];
 
-const Header = ({ dis }) => {
+const Header = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [categories, setCategories] = useState([])
     const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
     const [authMenuAnchorEl, setAuthMenuAnchorEl] = useState(null);
     const [user, setUser] = useState(null);
+    const [state, setState] = useState({
+        scrollPosition: null,
+    });
+    const [style, setstyle] = useState(false);
+
+    const updateScroll = () => {
+        setState({
+            scrollPosition: window.scrollY,
+        });
+        if (state.scrollPosition > 380) {
+            setstyle(true);
+        } else {
+            setstyle(false);
+        }
+    };
+    useEffect(() => {
+        window.addEventListener("scroll", updateScroll);
+    });
 
     useEffect(() => {
         const handleResize = () => {
@@ -64,7 +85,7 @@ const Header = ({ dis }) => {
                 }
             }).then(response => {
                 setUser(response.data)
-                
+
             }).catch(error => {
                 console.error('Error fetching user data:', error);
             });
@@ -93,9 +114,23 @@ const Header = ({ dis }) => {
         setUserMenuAnchorEl(null)
     }
 
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+            console.log('response==>', response.data);
+            setCategories(response.data);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
     return (
         <div>
-            <section className="topBar p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
+            <section className=" p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
                 <section className="justify-between flex flex-wrap items-center">
                     <div className="flex  items-center">
                         <Link href="/">
@@ -114,43 +149,86 @@ const Header = ({ dis }) => {
                                 </nav>
                             </>
                         )}
-                       
+
 
                     </div>
-                     {isMobile && (
-                            <div className="flex ">
-                                {user ? (
-                                    <>
 
-                                        <IconButton onClick={handleUserMenuClick}>
-                                            <AccountCircleOutlinedIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={userMenuAnchorEl}
-                                            open={Boolean(userMenuAnchorEl)}
-                                            onClose={handleUserMenuClose}
-                                        >
-                                            <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
-                                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                                        </Menu>
+                    {/* <section>
+                        {!isMobile && (
+                            <form >
+                                <section className={'form dFlex alignItemsCenter'}>
+                                    <header className={'searchHead'}>
+                                        <Typography variant="body2" className={'searchText'}>
+                                            Category :
+                                        </Typography>
+                                    </header>
+                                    <section className={'selectSection'}>
+                                        <select >
+                                            <option>All</option>
+                                            
+                                            {categories.map((category,index) => (
+                                                <option key={index} value={category.categoryname}>
+                                                    <Link href="/category/[categoryName]" as={`/category/${category.categoryname}`}>
+                                                   
+                                                            {category.categoryname}
+                                                       
+                                                    </Link>
+                                                </option>
+                                            ))}
 
-                                    </>
-                                ) : (
-                                    <>
-                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
-                                            Login / Sign Up
-                                        </button>
-                                        <Menu
-                                            anchorEl={authMenuAnchorEl}
-                                            open={Boolean(authMenuAnchorEl)}
-                                            onClose={handleAuthMenuClose}
-                                        >
-                                            <Auth updateUser={setUser} />
-                                        </Menu>
-                                    </>
-                                )}
-                            </div>
+                                        </select>
+                                    </section>
+                                    <article className={'inputField'}>
+                                        <input
+                                            type="search"
+                                            className="inputSearch"
+                                            placeholder="Search here.."
+
+                                            onChange={(e) => setpoductname(e.target.value)}
+                                        />
+                                    </article>
+                                    <footer className={'iconSearch'}>
+                                        <SearchSharpIcon className={'cursorPointer colorPrimary'} fontSize={'small'}></SearchSharpIcon>
+                                    </footer>
+                                </section>
+                            </form>
                         )}
+                    </section> */}
+
+                    {isMobile && (
+                        <div className="flex ">
+                            {user ? (
+                                <>
+
+                                    <IconButton onClick={handleUserMenuClick}>
+                                        <AccountCircleOutlinedIcon />
+                                    </IconButton>
+                                    <Menu
+                                        anchorEl={userMenuAnchorEl}
+                                        open={Boolean(userMenuAnchorEl)}
+                                        onClose={handleUserMenuClose}
+                                    >
+                                        <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
+                                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                    </Menu>
+
+                                </>
+                            ) : (
+                                <>
+                                    <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
+                                        Login / Sign Up
+                                    </button>
+                                    <Menu
+                                        anchorEl={authMenuAnchorEl}
+                                        open={Boolean(authMenuAnchorEl)}
+                                        onClose={handleAuthMenuClose}
+                                    >
+                                        <Auth updateUser={setUser} />
+                                    </Menu>
+                                </>
+                            )}
+                        </div>
+                    )}
                     {isMobile && (
                         <>
                             <nav className="flex flex-wrap items-center mt-2">
@@ -162,7 +240,7 @@ const Header = ({ dis }) => {
                             </nav>
                         </>
                     )}
-                    
+
                     <div className="flex items-center">
                         <IconButton>
                             <StyledBadge>
@@ -174,7 +252,7 @@ const Header = ({ dis }) => {
                                 <ShoppingCartOutlinedIcon className="text-[#ff7a34] topBarButtons" fontSize="small" />
                             </StyledBadge>
                         </IconButton>
-                        
+
                         {!isMobile && (
                             <>
                                 {user ? (
@@ -203,14 +281,14 @@ const Header = ({ dis }) => {
                                             open={Boolean(authMenuAnchorEl)}
                                             onClose={handleAuthMenuClose}
                                         >
-                                            <Auth updateUser={setUser}/>
+                                            <Auth updateUser={setUser} />
                                         </Menu>
                                     </>
                                 )}
                             </>
                         )}
                     </div>
-                    
+
                 </section>
             </section>
         </div>

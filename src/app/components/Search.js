@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
@@ -54,6 +55,47 @@ const Search = ({ setSearchQuery}) => {
           <FaSearch />
         </button>
       </div>
+
+      {/* <div className="bg-white rounded-full p-2">
+        
+          <section className={'form dFlex alignItemsCenter'}>
+            <header className={'searchHead'}>
+              <Typography variant="body2" className={'searchText'}>
+                Category :
+              </Typography>
+            </header>
+            <section className={'selectSection'}>
+              <select className="outline-0">
+                <option>All</option>
+
+                {categories.map((category, index) => (
+                  <option key={index} value={category.categoryname}>
+                    <Link href="/category/[categoryName]" as={`/category/${category.categoryname}`}>
+
+                     <li> {category.categoryname}</li>
+
+                    </Link>
+                  </option>
+                ))}
+
+              </select>
+            </section>
+            <article className={'inputField'}>
+              <input
+                type="search"
+                className="inputSearch outline-0"
+                placeholder="Search here.."
+                value={query}
+                onChange={handleChange}
+                onKeyPress={handleKeyPress}
+              />
+            </article>
+            <footer className={'iconSearch'}>
+              <SearchSharpIcon onClick={handleSearch} className={' colorPrimary'} fontSize={'small'}></SearchSharpIcon>
+            </footer>
+          </section>
+      
+      </div> */}
     </div>
   );
 };
