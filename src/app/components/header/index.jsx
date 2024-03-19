@@ -28,13 +28,13 @@ const navPages = [
         name: "Home",
         link: "/",
     },
-    {
-        name: "Products",
-        link: "/",
-    },
+    // {
+    //     name: "Products",
+    //     link: "/",
+    // },
     {
         name: "Blogs",
-        link: "/",
+        link: "/blogs",
     },
 ];
 
