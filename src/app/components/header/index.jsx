@@ -15,6 +15,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import Typography from "@mui/material/Typography";
 import './header.css'
+import url from '../../../url'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -79,7 +80,7 @@ const Header = () => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (token) {
-            axios.get('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/user', {
+            axios.get(`${url.apiUrl}/auth/user`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -116,7 +117,7 @@ const Header = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+            const response = await axios.get(`${url.apiUrl}/dev/blogs`);
             console.log('response==>', response.data);
             setCategories(response.data);
         } catch (error) {

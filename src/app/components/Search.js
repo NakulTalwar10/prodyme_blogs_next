@@ -1,6 +1,7 @@
-import Link from "next/link";
+'use client'
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import url from '../../url'
 
 const Search = ({ setSearchQuery}) => {
   const [query, setQuery] = useState("");
@@ -13,7 +14,7 @@ const Search = ({ setSearchQuery}) => {
   const handleSearch = async () => {
     setSearchQuery(query)
     // Fetch data from the API
-    fetch(`https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/search?searchInput=${query}`)
+    fetch(`${url.apiUrl}/blogs/search?searchInput=${query}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

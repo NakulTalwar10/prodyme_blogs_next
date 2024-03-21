@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GrFormViewHide } from "react-icons/gr"
 import { FaRegEye } from "react-icons/fa6";
+import url from '../../../url'
 
 const Auth = ({updateUser}) => {
     const [isLogin, setIsLogin] = useState(true);
@@ -24,7 +25,7 @@ const Auth = ({updateUser}) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/register', { ...user });
+            const response = await axios.post(`${url.apiUrl}/auth/register`, { ...user });
             setIsLogin(true);
             setUser({ fullname: "", email: "", password: "" });
             toast.success("Signup successful. Please log in.");
@@ -38,7 +39,7 @@ const Auth = ({updateUser}) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/auth/login', { ...user });
+            const response = await axios.post(`${url.apiUrl}/auth/login`, { ...user });
             const { token } = response.data;
 
             if (!token) {
