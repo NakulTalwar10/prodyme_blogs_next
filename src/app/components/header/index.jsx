@@ -16,6 +16,7 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import Typography from "@mui/material/Typography";
 import './header.css'
 import url from '../../../url'
+import { usePathname   } from "next/navigation";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -51,6 +52,7 @@ const Header = () => {
         scrollPosition: null,
     });
     const [style, setstyle] = useState(false);
+    const router = usePathname();
 
     const updateScroll = () => {
         setState({
@@ -65,6 +67,7 @@ const Header = () => {
     useEffect(() => {
         window.addEventListener("scroll", updateScroll);
     });
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -129,8 +132,19 @@ const Header = () => {
         fetchCategories();
     }, []);
 
-    return (
+    const currentRoute = router;
+
+    const hideHeaderRoutes = ['/products'];
+
+    const shouldShowHeader = !hideHeaderRoutes.includes(currentRoute);
+
+    console.log("Should show header:", shouldShowHeader);
+
+    console.log("Current pathname:", currentRoute);
+    
+    return shouldShowHeader ? (
         <div>
+        
             <section className=" p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
                 <section className="justify-between flex flex-wrap items-center">
                     <div className="flex  items-center">
@@ -292,8 +306,10 @@ const Header = () => {
 
                 </section>
             </section>
+     
+            
         </div>
-    );
+    ):null;
 };
 
 export default Header;

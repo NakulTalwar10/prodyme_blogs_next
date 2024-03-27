@@ -36,12 +36,12 @@ const ProductsBackground = () => {
     };
 
     return (
-        <div className="mt-[80px]">
+        <div className="relative">
             <Slider {...settings}>
                 {images.map((image, index) => (
                     <div key={index}>
                         <div className="relative w-full">
-                            <Image src={image.image} width={1000} height={1000} className="w-full h-[274px] object-cover" alt="Background" />
+                            <Image src={image.image} width={1000} height={1000} className="w-full h-[360px] object-cover" alt="Background" />
                             <div className="absolute inset-0 flex flex-col justify-end items-start p-5 bg-gradient-to-b from-transparent via-transparent to-black">
                                 <h4 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light">{image.title}</h4>
                                 <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light">{image.description}</p>

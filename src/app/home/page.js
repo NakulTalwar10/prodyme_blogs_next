@@ -866,11 +866,11 @@ const HomePage = () => {
             </Element>
 
 
-            <section className='section-7 px-5 md:px-[71px] py-20'>
+            {/* <section className='section-7 px-5 md:px-[71px] py-20'>
                 <Element name="contactSection" className="contact-section">
                     <Contact />
                 </Element>
-            </section>
+            </section> */}
 
         </div>
   )
