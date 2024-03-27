@@ -1,6 +1,8 @@
 const url = {
     apiUrl: "https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev",
   // apiUrl: "http://localhost:5000",
+  // productUrl:"http://localhost:9000/ecomm"
+  productUrl:"https://efbxl74e21.execute-api.ap-south-1.amazonaws.com/dev/ecomm"
 };
 
 export default url;

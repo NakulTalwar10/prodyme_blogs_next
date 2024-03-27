@@ -33,7 +33,7 @@ const navPages = [
     },
     {
         name: "Products",
-        link: "/",
+        link: "/products",
     },
     {
         name: "Blogs",
@@ -88,7 +88,7 @@ const Header = () => {
                 setUser(response.data)
 
             }).catch(error => {
-                console.error('Error fetching user data:', error);
+                // console.error('Error fetching user data:', error);
             });
         }
     }, []);
@@ -118,10 +118,10 @@ const Header = () => {
     const fetchCategories = async () => {
         try {
             const response = await axios.get(`${url.apiUrl}/dev/blogs`);
-            console.log('response==>', response.data);
+            // console.log('response==>', response.data);
             setCategories(response.data);
         } catch (error) {
-            console.error("Error fetching categories:", error);
+            // console.error("Error fetching categories:", error);
         }
     };
 
@@ -136,7 +136,7 @@ const Header = () => {
                     <div className="flex  items-center">
                         <Link href="/">
                             <div>
-                                <Image src="./images/prodyme-logo.png" alt="Prodyme" width={100} height={50} />
+                                <Image src="../images/prodyme-logo.png" alt="Prodyme" width={100} height={50} />
                             </div>
                         </Link>
                         {!isMobile && (

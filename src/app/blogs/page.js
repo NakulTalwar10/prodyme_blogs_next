@@ -40,9 +40,9 @@ const BlogsPage = () => {
           })),
         }));
         setBlogs(formattedBlogs);
-        console.log(formattedBlogs);
+        // console.log(formattedBlogs);
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        // console.error("Error fetching blogs:", error);
       }
     };
     fetchBlogs();
@@ -86,7 +86,7 @@ const BlogsPage = () => {
             <Search setSearchQuery={setSearchQuery} />
 
             <Paginations
-              totalCategories={blogs.length}
+              totalProducts={blogs.length}
               postsPerPage={postsPerPage}
               currentPage={currentPage}
               paginate={paginate}
@@ -276,7 +276,7 @@ const BlogsPage = () => {
         {/* Pagination */}
         <div className="p-5 flex justify-end">
           <Paginations
-            totalCategories={blogs.length}
+            totalProducts={blogs.length}
               postsPerPage={postsPerPage}
               currentPage={currentPage}
               paginate={paginate}

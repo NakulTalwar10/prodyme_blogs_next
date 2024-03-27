@@ -43,7 +43,7 @@ const BlogsItems = ({ slug }) => {
         );
 
         setData(filteredPosts);
-        console.log(filteredPosts);
+        // console.log(filteredPosts);
         setData(filteredPosts);
       } catch (error) {
         setError(error.message);
@@ -67,23 +67,23 @@ const BlogsItems = ({ slug }) => {
           `${url.apiUrl}/blogs/categories?categoryId=${blog.categories[0]}`
         );
         setCategory(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
-        console.error("Error fetching blog:", error);
+        // console.error("Error fetching blog:", error);
       }
     };
 
     const fetchTags = async () => {
       const joinedTags = blog.tags.join(",");
-      console.log("jjjtags", joinedTags);
+      // console.log("jjjtags", joinedTags);
       try {
         const response = await axios.get(
           `${url.apiUrl}/blogs/tags?tagsId=${joinedTags}`
         );
         setTags(response.data);
-        console.log("tags name getting ", response.data);
+        // console.log("tags name getting ", response.data);
       } catch (error) {
-        console.error("Error fetching blog:", error);
+        // console.error("Error fetching blog:", error);
       }
     };
 
@@ -110,7 +110,7 @@ const BlogsItems = ({ slug }) => {
         // setUserTags(array);
         // console.log(response.data[0]);
       } catch (error) {
-        console.error("Error fetching blog:", error);
+        // console.error("Error fetching blog:", error);
       }
     };
 

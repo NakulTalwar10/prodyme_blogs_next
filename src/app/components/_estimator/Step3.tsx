@@ -98,7 +98,7 @@ const Step3: React.FC<step3Type> = ({
     e.preventDefault();
     if (validateForm()) {
       // Perform actions with the form data here
-      console.log("Form Data:", popUpFormData);
+      // console.log("Form Data:", popUpFormData);
 
       try {
         const response = await fetch(
@@ -135,7 +135,7 @@ const Step3: React.FC<step3Type> = ({
 
         setStep(step + 1); // Move to the next step after successful form submission
       } catch (error) {
-        console.error("Error submitting form:", error);
+        // console.error("Error submitting form:", error);
         toast.error("Form submittion failed!", {
           position: "top-center",
           autoClose: 1000,

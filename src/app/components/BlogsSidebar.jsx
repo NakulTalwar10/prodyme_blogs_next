@@ -15,7 +15,7 @@ const BlogsSidebar = () => {
       const response = await axios.get(`${url.apiUrl}/blogs`);
       setCategories(response.data);
     } catch (error) {
-      console.error("Error fetching categories:", error);
+      // console.error("Error fetching categories:", error);
     }
   };
 

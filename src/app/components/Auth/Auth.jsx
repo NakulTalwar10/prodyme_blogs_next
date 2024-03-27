@@ -30,7 +30,7 @@ const Auth = ({updateUser}) => {
             setUser({ fullname: "", email: "", password: "" });
             toast.success("Signup successful. Please log in.");
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             toast.error(err.message);
         }
     };
