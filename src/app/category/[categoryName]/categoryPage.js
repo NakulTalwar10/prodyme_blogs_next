@@ -35,7 +35,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                 setBlogs(formattedBlogs);
                 setCurrentPagePosts(formattedBlogs.flatMap(blog => blog.posts).slice(0, postsPerPage));
             } catch (error) {
-                console.error("Error fetching blogs:", error);
+                // console.error("Error fetching blogs:", error);
             }
         };
         fetchBlogs();
@@ -75,7 +75,7 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
                     <div className="flex flex-col lg:flex-row justify-end lg:ml-auto">
                         <Search setSearchQuery={setSearchQuery} />
                         <Paginations
-                            totalCategories={blogs.flatMap(blog => blog.posts).length}
+                            totalProducts={blogs.flatMap(blog => blog.posts).length}
                             postsPerPage={postsPerPage}
                             currentPage={currentPage}
                             paginate={paginate}

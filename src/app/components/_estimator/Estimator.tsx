@@ -31,7 +31,7 @@ const Estimator = () => {
           throw new Error("Failed to fetch data");
         }
         const APIdata = await response.json();
-        console.log(APIdata);
+        // console.log(APIdata);
 
         const groupedItems: GroupedItemType[] = [];
 
@@ -59,9 +59,9 @@ const Estimator = () => {
           }
         });
         setGroupedItems(groupedItems);
-        console.log(groupedItems, "hello");
+        // console.log(groupedItems, "hello");
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       }
     };
 

@@ -1,5 +1,7 @@
+'use client'
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import url from '../../url'
 
 const Search = ({ setSearchQuery}) => {
   const [query, setQuery] = useState("");
@@ -12,7 +14,7 @@ const Search = ({ setSearchQuery}) => {
   const handleSearch = async () => {
     setSearchQuery(query)
     // Fetch data from the API
-    fetch(`https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs/search?searchInput=${query}`)
+    fetch(`${url.apiUrl}/blogs/search?searchInput=${query}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -21,12 +23,12 @@ const Search = ({ setSearchQuery}) => {
       })
       .then((data) => {
         // Handle the retrieved data
-        console.log("search data =>",data);
+        // console.log("search data =>",data);
        
       })
       .catch((error) => {
         // Handle any errors that occur during the fetch operation
-        console.error("There was a problem with the fetch operation:", error);
+        // console.error("There was a problem with the fetch operation:", error);
       });
   };
 
@@ -54,6 +56,47 @@ const Search = ({ setSearchQuery}) => {
           <FaSearch />
         </button>
       </div>
+
+      {/* <div className="bg-white rounded-full p-2">
+        
+          <section className={'form dFlex alignItemsCenter'}>
+            <header className={'searchHead'}>
+              <Typography variant="body2" className={'searchText'}>
+                Category :
+              </Typography>
+            </header>
+            <section className={'selectSection'}>
+              <select className="outline-0">
+                <option>All</option>
+
+                {categories.map((category, index) => (
+                  <option key={index} value={category.categoryname}>
+                    <Link href="/category/[categoryName]" as={`/category/${category.categoryname}`}>
+
+                     <li> {category.categoryname}</li>
+
+                    </Link>
+                  </option>
+                ))}
+
+              </select>
+            </section>
+            <article className={'inputField'}>
+              <input
+                type="search"
+                className="inputSearch outline-0"
+                placeholder="Search here.."
+                value={query}
+                onChange={handleChange}
+                onKeyPress={handleKeyPress}
+              />
+            </article>
+            <footer className={'iconSearch'}>
+              <SearchSharpIcon onClick={handleSearch} className={' colorPrimary'} fontSize={'small'}></SearchSharpIcon>
+            </footer>
+          </section>
+      
+      </div> */}
     </div>
   );
 };

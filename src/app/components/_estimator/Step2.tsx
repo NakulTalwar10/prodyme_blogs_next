@@ -108,8 +108,10 @@ export const Step2: React.FC<step2Type> = ({
                         }`}
                       >
                         {Array.from({ length: id + 1 }, (_, index) => (
-                          <img
+                          <Image
                             key={index}
+                            width={1000}
+                            height={1000}
                             style={{ left: `${8 * (index + 4)}px` }}
                             className={`absolute z-10 ${
                               index % 2 === 0 ? "top-2" : "top-3"

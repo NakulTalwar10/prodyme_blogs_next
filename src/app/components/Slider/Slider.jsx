@@ -27,7 +27,8 @@ const ProductSlider = ({ category, tags }) => {
 
   useEffect(() => {
     fetchData();
-    console.log(tags);
+    // console.log(tags);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, tags]);
 
   const fetchData = async () => {
@@ -36,13 +37,13 @@ const ProductSlider = ({ category, tags }) => {
         `${url.apiUrl}/products?category=${category}&tags=${tags.join(",")}`
       );
       const data = response.data;
-      console.log("Data Log :", response.data);
+      // console.log("Data Log :", response.data);
 
-      console.log(data.products);
+      // console.log(data.products);
       setProducts(data.products);
       // console.log(filteredProducts.subcategories[0].products);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 

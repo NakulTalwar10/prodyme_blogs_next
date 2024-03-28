@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
+import url from '../../url'
 
 const BlogsSidebar = () => {
   const [categories, setCategories] = React.useState([]);
@@ -11,10 +12,10 @@ const BlogsSidebar = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("https://o2hiiab1uc.execute-api.ap-south-1.amazonaws.com/dev/blogs");
+      const response = await axios.get(`${url.apiUrl}/blogs`);
       setCategories(response.data);
     } catch (error) {
-      console.error("Error fetching categories:", error);
+      // console.error("Error fetching categories:", error);
     }
   };
 

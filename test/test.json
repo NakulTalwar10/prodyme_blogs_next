@@ -1,0 +1,68 @@
+[
+  {
+    "sectionID": 1,
+    "name": "Steel (sariya)Rathi, Kamdhenu or eq.INR 150per sqft",
+    "options": [
+      {
+        "selected": false,
+        "grade": "premium",
+        "optionID": 11,
+        "parentSectionID": 1,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      },
+      {
+        "selected": false,
+        "grade": "luxury",
+        "optionID": 12,
+        "parentSectionID": 1,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      },
+      {
+        "selected": false,
+        "grade": "luxury",
+        "optionID": 13,
+        "parentSectionID": 1,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      }
+    ]
+  },
+  {
+    "sectionID": 2,
+    "name": "Steel (sariya)Rathi, Kamdhenu or eq.INR 150per sqft",
+    "options": [
+      {
+        "selected": false,
+        "grade": "luxury",
+        "optionID": 11,
+        "parentSectionID": 2,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      },
+      {
+        "selected": false,
+        "grade": "luxury",
+        "optionID": 12,
+        "parentSectionID": 2,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      },
+      {
+        "selected": false,
+        "grade": "luxury",
+        "optionID": 13,
+        "parentSectionID": 2,
+        "makes": "m",
+        "rate": 100,
+        "description": "Combination as per design of tiles and laminated wooden flooring in the base rate range of INR 85- 110 per sqft"
+      }
+    ]
+  }
+]

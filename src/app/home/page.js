@@ -3,9 +3,6 @@ import React, { useState, useEffect, use } from 'react'
 import '../globals.css'
 import Estimator from '../components/_estimator/Estimator';
 import Contact from '../components/Contact';
-import About from '../components/_about/page';
-import Work from '../components/Work'
-import Services from '../components/Services';
 import { Element } from 'react-scroll';
 import { Dialog, DialogTitle, DialogContent, Button } from '@mui/material';
 import Image from 'next/image';
@@ -869,11 +866,11 @@ const HomePage = () => {
             </Element>
 
 
-            <section className='section-7 px-5 md:px-[71px] py-20'>
+            {/* <section className='section-7 px-5 md:px-[71px] py-20'>
                 <Element name="contactSection" className="contact-section">
                     <Contact />
                 </Element>
-            </section>
+            </section> */}
 
         </div>
   )

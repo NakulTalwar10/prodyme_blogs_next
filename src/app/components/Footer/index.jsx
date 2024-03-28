@@ -7,27 +7,27 @@ const Footer = () => {
         {
             name: 'Facebook',
             path: 'https://www.facebook.com/profile.php?id=100084868209666',
-            icon: './images/fb.png'
+            icon: '../images/fb.png'
         },
         {
             name: 'LinkedIn',
             path: 'https://www.linkedin.com/company/prodyme-homes/',
-            icon: './images/linkedin.png'
+            icon: '../images/linkedin.png'
         },
         {
             name: 'Instagram',
             path: 'https://www.instagram.com/prodyme.india/',
-            icon: './images/insta.png'
+            icon: '../images/insta.png'
         },
         {
             name: 'Twitter',
             path: 'https://twitter.com/ProdymeIndia',
-            icon: './images/twitter.png'
+            icon: '../images/twitter.png'
         },
         {
             name: 'YouTube',
             path: 'https://www.youtube.com/channel/UCezm0GYyK9paIXdaEJWZFQQ',
-            icon: './images/youtube.png'
+            icon: '../images/youtube.png'
         }
     ];
 
@@ -56,7 +56,7 @@ const Footer = () => {
 
     return (
         <div className='lg:top-[100px] sticky'>
-            <footer className=" footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('./images/grid-hexa-dark.png')" }}>
+            <footer className=" footNote bg-opacity-66 bg-cover" style={{ backgroundImage: "url('../images/grid-hexa-dark.png')" }}>
                 <div className="flex flex-col lg:flex-row justify-around p-4 lg:p-20">
                     <nav className="mb-4 lg:mb-0">
                         <ul className="flex space-x-4">

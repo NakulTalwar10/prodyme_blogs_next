@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const Paginations = ({ postsPerPage, totalCategories, currentPage, paginate }) => {
-  const pageCount = Math.ceil(totalCategories / postsPerPage);
+const Paginations = ({ postsPerPage, totalProducts, currentPage, paginate }) => {
+  const pageCount = Math.ceil(totalProducts / postsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < pageCount) {
