@@ -71,8 +71,8 @@ const CategoryBlogsPage = ({ selectedCategory }) => {
         <div className="flex-1 overflow-y-auto">
           <BlogsBackground />
 
-          <div className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
-            <div className="flex flex-col lg:flex-row justify-end lg:ml-auto">
+          <div className="flex justify-around lg:flex-row items-center lg:justify-between">
+            <div className="flex flex-col lg:flex-row  lg:ml-auto">
               <Search setSearchQuery={setSearchQuery} />
               <Paginations
                 totalProducts={blogs.flatMap((blog) => blog.posts).length}
