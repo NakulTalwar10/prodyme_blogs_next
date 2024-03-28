@@ -16,6 +16,7 @@ const ProductsCategory = ({ categoryname }) => {
   const [value, setValue] = useState()
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,15 +34,20 @@ const ProductsCategory = ({ categoryname }) => {
     fetchData();
   }, [categoryname]);
 
-  const lastProducts = currentPage * postsPerPage
-  const firstProducts = lastProducts - postsPerPage
-  const currentProducts = products.slice(firstProducts, lastProducts)
+  const lastProducts = currentPage * postsPerPage;
+    const firstProducts = lastProducts - postsPerPage;
+    const currentProducts = selectedSubcategory ? products.filter(product => product.SubCategory === selectedSubcategory) : products.slice(firstProducts, lastProducts);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const handleSubcategorySelect = (subcategory) => {
+        setSelectedSubcategory(subcategory);
+        setCurrentPage(1);
+    };
 
   return (
     <div className="flex bg-[#f8f8f8]">
-      <ProductSidebar />
+      <ProductSidebar categoryname={categoryname} onSubcategorySelect={handleSubcategorySelect}/>
 
       <section className="flex-1 overflow-y-auto">
         <ProductsBackground />
@@ -51,8 +57,8 @@ const ProductsCategory = ({ categoryname }) => {
 
         <div className="p-5">
 
-          <section className="search-pagination">
-            <div className="flex justify-end p-5">
+          <section className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
+          <div className="flex flex-col lg:flex-row  lg:ml-auto">
               <Search />
 
               <Paginations

@@ -107,8 +107,8 @@ const ProductsPage = () => {
 
 
                 {/* pagination and search bar */}
-                <section className="search-pagination">
-                    <div className="flex justify-end p-5">
+                <section className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
+                    <div className="flex flex-col lg:flex-row  lg:ml-auto">
                         <Search />
 
                         {/* <Paginations /> */}
@@ -124,10 +124,10 @@ const ProductsPage = () => {
                                 <h2 className="mr-2 text-xl font-bold">{selectedCategory.categoryname} of Products</h2>
                                 <hr className="border flex-grow border-black" />
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5 hover:shadow-2xl">
                                 {selectedCategory.products.slice(0, 5).map((product, index) => (
                                     <div key={index} className="p-5 relative hover:shadow-2xl cursor-pointer">
-                                        <FaRegHeart className="absolute top-1 right-1 font-bold text-xl text-orange-500 cursor-pointer" />
+                                        <FaRegHeart className="absolute top-1 right-1 font-bold text-xl text-orange-500 cursor-pointer " />
                                         <Image
                                             width={1000}
                                             height={1000}
@@ -189,7 +189,7 @@ const ProductsPage = () => {
                                 <h2 className="mr-2 text-xl font-bold">{selectedCategory.categoryname} of Products</h2>
                                 <hr className="border flex-grow border-black" />
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5 hover:shadow-2xl">
                                 {selectedCategory.products.slice(0, 10).map((product, index) => (
                                     <div key={index} className="p-5 relative hover:shadow-2xl cursor-pointer">
                                         <FaRegHeart className="absolute top-1 right-1 font-bold text-xl text-orange-500 cursor-pointer" />
