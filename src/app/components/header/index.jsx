@@ -118,19 +118,19 @@ const Header = () => {
         setUserMenuAnchorEl(null)
     }
 
-    const fetchCategories = async () => {
-        try {
-            const response = await axios.get(`${url.apiUrl}/dev/blogs`);
-            // console.log('response==>', response.data);
-            setCategories(response.data);
-        } catch (error) {
-            // console.error("Error fetching categories:", error);
-        }
-    };
+    // const fetchCategories = async () => {
+    //     try {
+    //         const response = await axios.get(`${url.apiUrl}/blogs`);
+    //         // console.log('response==>', response.data);
+    //         setCategories(response.data);
+    //     } catch (error) {
+    //         // console.error("Error fetching categories:", error);
+    //     }
+    // };
 
-    useEffect(() => {
-        fetchCategories();
-    }, []);
+    // useEffect(() => {
+    //     fetchCategories();
+    // }, []);
 
     const currentRoute = router;
 
@@ -143,32 +143,38 @@ const Header = () => {
     console.log("Current pathname:", currentRoute);
     
     return shouldShowHeader ? (
-        <div>
-        
-            <section className=" p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
-                <section className="justify-between flex flex-wrap items-center">
-                    <div className="flex  items-center">
-                        <Link href="/">
-                            <div>
-                                <Image src="../images/prodyme-logo.png" alt="Prodyme" width={100} height={50} />
-                            </div>
-                        </Link>
-                        {!isMobile && (
-                            <>
-                                <nav className="flex flex-wrap items-center mx-4">
-                                    {navPages.map((page) => (
-                                        <Link href={page.link} key={page.name}>
-                                            <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">{page.name}</button>
-                                        </Link>
-                                    ))}
-                                </nav>
-                            </>
-                        )}
+      <div>
+        <section className=" p-5 fixed top-0 w-full bg-white z-50 shadow-xl">
+          <section className="justify-between flex flex-wrap items-center">
+            <div className="flex  items-center">
+              <Link href="/">
+                <div>
+                  <Image
+                    src="./images/prodyme-logo.png"
+                    alt="Prodyme"
+                    width={1000}
+                    height={1000}
+                    priority={true}
+                    className="w-[100px] h-[37.66px] object-cover"
+                  />
+                </div>
+              </Link>
+              {!isMobile && (
+                <>
+                  <nav className="flex flex-wrap items-center mx-4">
+                    {navPages.map((page) => (
+                      <Link href={page.link} key={page.name}>
+                        <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">
+                          {page.name}
+                        </button>
+                      </Link>
+                    ))}
+                  </nav>
+                </>
+              )}
+            </div>
 
-
-                    </div>
-
-                    {/* <section>
+            {/* <section>
                         {!isMobile && (
                             <form >
                                 <section className={'form dFlex alignItemsCenter'}>
@@ -210,106 +216,119 @@ const Header = () => {
                         )}
                     </section> */}
 
-                    {isMobile && (
-                        <div className="flex ">
-                            {user ? (
-                                <>
+            {isMobile && (
+              <div className="flex ">
+                {user ? (
+                  <>
+                    <IconButton onClick={handleUserMenuClick}>
+                      <AccountCircleOutlinedIcon />
+                    </IconButton>
+                    <Menu
+                      anchorEl={userMenuAnchorEl}
+                      open={Boolean(userMenuAnchorEl)}
+                      onClose={handleUserMenuClose}
+                    >
+                      <MenuItem onClick={handleUserMenuClose}>
+                        {user.fullname}
+                      </MenuItem>
+                      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    </Menu>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full"
+                      onClick={handleAuthMenuClick}
+                    >
+                      Login / Sign Up
+                    </button>
+                    <Menu
+                      anchorEl={authMenuAnchorEl}
+                      open={Boolean(authMenuAnchorEl)}
+                      onClose={handleAuthMenuClose}
+                    >
+                      <Auth updateUser={setUser} />
+                    </Menu>
+                  </>
+                )}
+              </div>
+            )}
+            {isMobile && (
+              <>
+                <nav className="flex flex-wrap items-center mt-2">
+                  {navPages.map((page) => (
+                    <Link href={page.link} key={page.name}>
+                      <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">
+                        {page.name}
+                      </button>
+                    </Link>
+                  ))}
+                </nav>
+              </>
+            )}
 
-                                    <IconButton onClick={handleUserMenuClick}>
-                                        <AccountCircleOutlinedIcon />
-                                    </IconButton>
-                                    <Menu
-                                        anchorEl={userMenuAnchorEl}
-                                        open={Boolean(userMenuAnchorEl)}
-                                        onClose={handleUserMenuClose}
-                                    >
-                                        <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
-                                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                                    </Menu>
+            <div className="flex items-center">
+              <IconButton>
+                <StyledBadge>
+                  <FavoriteBorderSharpIcon
+                    className="text-[#ff7a34] topBarButtons"
+                    fontSize="small"
+                  />
+                </StyledBadge>
+              </IconButton>
+              <IconButton>
+                <StyledBadge badgeContent={0}>
+                  <ShoppingCartOutlinedIcon
+                    className="text-[#ff7a34] topBarButtons"
+                    fontSize="small"
+                  />
+                </StyledBadge>
+              </IconButton>
 
-                                </>
-                            ) : (
-                                <>
-                                    <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
-                                        Login / Sign Up
-                                    </button>
-                                    <Menu
-                                        anchorEl={authMenuAnchorEl}
-                                        open={Boolean(authMenuAnchorEl)}
-                                        onClose={handleAuthMenuClose}
-                                    >
-                                        <Auth updateUser={setUser} />
-                                    </Menu>
-                                </>
-                            )}
-                        </div>
-                    )}
-                    {isMobile && (
-                        <>
-                            <nav className="flex flex-wrap items-center mt-2">
-                                {navPages.map((page) => (
-                                    <Link href={page.link} key={page.name}>
-                                        <button className="mx-2 font-medium hover:font-normal text-orange-400 text-md">{page.name}</button>
-                                    </Link>
-                                ))}
-                            </nav>
-                        </>
-                    )}
-
-                    <div className="flex items-center">
-                        <IconButton>
-                            <StyledBadge>
-                                <FavoriteBorderSharpIcon className="text-[#ff7a34] topBarButtons" fontSize="small" />
-                            </StyledBadge>
+              {!isMobile && (
+                <>
+                  {user ? (
+                    <>
+                      <>
+                        <IconButton onClick={handleUserMenuClick}>
+                          <AccountCircleOutlinedIcon />
                         </IconButton>
-                        <IconButton>
-                            <StyledBadge badgeContent={0}>
-                                <ShoppingCartOutlinedIcon className="text-[#ff7a34] topBarButtons" fontSize="small" />
-                            </StyledBadge>
-                        </IconButton>
-
-                        {!isMobile && (
-                            <>
-                                {user ? (
-                                    <>
-                                        <>
-                                            <IconButton onClick={handleUserMenuClick}>
-                                                <AccountCircleOutlinedIcon />
-                                            </IconButton>
-                                            <Menu
-                                                anchorEl={userMenuAnchorEl}
-                                                open={Boolean(userMenuAnchorEl)}
-                                                onClose={handleUserMenuClose}
-                                            >
-                                                <MenuItem onClick={handleUserMenuClose}>{user.fullname}</MenuItem>
-                                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                                            </Menu>
-                                        </>
-                                    </>
-                                ) : (
-                                    <>
-                                        <button className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full" onClick={handleAuthMenuClick}>
-                                            Login / Sign Up
-                                        </button>
-                                        <Menu
-                                            anchorEl={authMenuAnchorEl}
-                                            open={Boolean(authMenuAnchorEl)}
-                                            onClose={handleAuthMenuClose}
-                                        >
-                                            <Auth updateUser={setUser} />
-                                        </Menu>
-                                    </>
-                                )}
-                            </>
-                        )}
-                    </div>
-
-                </section>
-            </section>
-     
-            
-        </div>
-    ):null;
+                        <Menu
+                          anchorEl={userMenuAnchorEl}
+                          open={Boolean(userMenuAnchorEl)}
+                          onClose={handleUserMenuClose}
+                        >
+                          <MenuItem onClick={handleUserMenuClose}>
+                            {user.fullname}
+                          </MenuItem>
+                          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        </Menu>
+                      </>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="bg-[#ff7a34] py-1 px-4 text-white text-[15px] rounded-full"
+                        onClick={handleAuthMenuClick}
+                      >
+                        Login / Sign Up
+                      </button>
+                      <Menu
+                        anchorEl={authMenuAnchorEl}
+                        open={Boolean(authMenuAnchorEl)}
+                        onClose={handleAuthMenuClose}
+                      >
+                        <Auth updateUser={setUser} />
+                      </Menu>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </section>
+        </section>
+      </div>
+    ) : null;
 };
 
 export default Header;

@@ -5,7 +5,15 @@ import Typography from '@mui/material/Typography';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const Paginations = ({ postsPerPage, totalProducts, currentPage, paginate }) => {
-  const pageCount = Math.ceil(totalProducts / postsPerPage);
+  // const [pageCount, setPageCount] = React.useState(
+  //   Math.ceil(totalProducts / postsPerPage)
+  // );
+  // React.useEffect(() => {
+  //   let count = Math.ceil(totalProducts / postsPerPage);
+  //   setPageCount(count);
+  // },[])
+  
+  let pageCount = Math.ceil(totalProducts / postsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < pageCount) {
@@ -47,7 +55,7 @@ const Paginations = ({ postsPerPage, totalProducts, currentPage, paginate }) => 
       </Button>
       <Typography>
         <input type="number" min="1" max={pageCount} className='text-center' value={currentPage} onChange={handleInputChange} onBlur={handleGoToPage} />
-        {' '}of {pageCount}
+        {' '} of {pageCount}
       </Typography>
       <Button onClick={handleNextPage} className={`text-black text-lg ${currentPage === pageCount ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`} disabled={currentPage === pageCount}>
         <MdKeyboardArrowRight/>
