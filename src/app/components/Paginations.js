@@ -5,7 +5,12 @@ import Typography from '@mui/material/Typography';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const Paginations = ({ postsPerPage, totalProducts, currentPage, paginate }) => {
-  const pageCount = Math.ceil(totalProducts / postsPerPage);
+  const [pageCount, setPageCount] = React.useState(1);
+  React.useEffect(() => {
+    let count = Math.ceil(totalProducts / postsPerPage);
+    setPageCount(count);
+  },[])
+  
 
   const handleNextPage = () => {
     if (currentPage < pageCount) {
