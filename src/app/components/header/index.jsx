@@ -150,7 +150,7 @@ const Header = () => {
               <Link href="/">
                 <div>
                   <Image
-                    src="./images/prodyme-logo.png"
+                    src="../images/prodyme-logo.png"
                     alt="Prodyme"
                     width={1000}
                     height={1000}

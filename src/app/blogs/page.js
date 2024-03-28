@@ -122,7 +122,7 @@ const BlogsPage = () => {
                         {formatDate(post.date)}
                       </p>
                       <div>
-                        {stripHtmlTags(post.excerpt).length > 150 ? (
+                        {stripHtmlTags(post.excerpt).length > 0 ? (
                           <div>
                             <p className="text-gray-900 text-md tracking-widest lg:font-medium my-2">
                               {stripHtmlTags(post.excerpt).substring(0, 150)}...
@@ -218,7 +218,7 @@ const BlogsPage = () => {
                                   {formatDate(post.date)}
                                 </p>
                                 <div className="">
-                                  {stripHtmlTags(post.excerpt).length > 150 ? (
+                                  {stripHtmlTags(post.excerpt).length > 0 ? (
                                     <div>
                                       <p className="text-gray-900 text-md tracking-widest lg:font-medium my-2">
                                         {stripHtmlTags(post.excerpt).substring(

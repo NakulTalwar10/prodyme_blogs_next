@@ -50,16 +50,33 @@ const ProductSidebar = ({ categoryname, onSubcategorySelect }) => {
     }, [categoryname]);
 
     return (
-        <div className={`bg-[#2a2a2a] md:w-36 lg:w-48 min-h-screen px-5 flex flex-col justify-start items-center md:block ${isVisible ? 'w-full lg:w-[201px]' : 'w-12'}`}>
+        <div
+      className={`bg-[#2A2A2A] md:w-36 lg:w-48 px-5 min-h-screen flex flex-col justify-start items-center md:block ${
+        isVisible ? "w-full lg:w-[201px]" : "w-12"
+      }`}
+    >
+      <button
+        onClick={toggleSidebar}
+        className={`mt-32 md:hidden top-[150px] text-white text-2xl p-2 lg:top-[100px] ${
+          isVisible ? "hidden" : "sticky"
+        }`}
+      >
+        <BsLayoutSidebarInset />
+      </button>
 
-            <button onClick={toggleSidebar} className={`mt-32 md:hidden top-[150px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? 'hidden' : 'sticky'}`}>
-                <BsLayoutSidebarInset />
-            </button>
-
-            <div className={`lg: mt-36 flex flex-col items-center lg:top-[180px]  md:block ${isVisible ? 'static' : 'hidden'}`}>
-                <button onClick={toggleSidebar} className={` md:hidden top-[180px] text-white text-2xl p-2 lg:top-[100px] ${isVisible ? '' : 'hidden'}`}>
-                    <BsLayoutSidebarInset />
-                </button>
+      <div
+        className={`md:mt-[300px] max-md:mt-[80px] flex flex-col items-center   md:block ${
+          isVisible ? "static" : "hidden"
+        }`}
+      >
+        <button
+          onClick={toggleSidebar}
+          className={` md:hidden top-[100px] text-white text-2xl p-2 lg:top-[100px] ${
+            isVisible ? "" : "hidden"
+          }`}
+        >
+          <BsLayoutSidebarInset />
+        </button>
 
                 <div className="flex items-center mt-[20px] ">
                     <div className="text-[20px] text-orange-400">
@@ -69,7 +86,7 @@ const ProductSidebar = ({ categoryname, onSubcategorySelect }) => {
                         <h4 className=" text-[20px] text-white">Filter</h4>
                     </div>
                     {selectedSubcategory && (
-                        <button onClick={handleClearAll} className="text-white text-sm rounded-md p-1 bg-orange-500  hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
+                        <button onClick={handleClearAll} className="text-white text-sm rounded p-1 bg-orange-500  hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
                             Clear All
                         </button>
                     )}
