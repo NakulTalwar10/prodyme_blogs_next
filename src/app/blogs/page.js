@@ -40,7 +40,7 @@ const BlogsPage = () => {
           })),
         }));
         setBlogs(formattedBlogs);
-        console.log(formattedBlogs);
+        // console.log(formattedBlogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
@@ -81,7 +81,7 @@ const BlogsPage = () => {
       <div className="flex-1 overflow-y-auto">
         <BlogsBackground />
 
-        <div className="flex justify-around lg:flex-row items-center lg:justify-between p-5">
+        <div className="flex justify-around lg:flex-row items-center lg:justify-between">
           <div className="flex flex-col lg:flex-row  lg:ml-auto">
             <Search setSearchQuery={setSearchQuery} />
 

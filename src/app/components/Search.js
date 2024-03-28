@@ -41,7 +41,7 @@ const Search = ({ setSearchQuery}) => {
       <div className="relative flex items-center">
         <input
           type="text"
-          className="w-[250px] lg:w-[285px] lg:h-[39px] text-black bg-[#E1E1E1] p-2 rounded-lg text-base italic outline-0 text-[12px]"
+          className="w-[250px] lg:w-[285px] lg:h-[39px] placeholder:text-[#2A2A2A] text-black bg-[#E1E1E1] pl-[20px] py-[12.5px] rounded-lg text-base italic outline-0 text-[12px] font-normal"
           placeholder="Search for tags or keywords"
           value={query}
           onChange={handleChange}

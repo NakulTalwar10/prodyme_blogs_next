@@ -47,7 +47,7 @@ const Paginations = ({ postsPerPage, totalCategories, currentPage, paginate }) =
       </Button>
       <Typography>
         <input type="number" min="1" max={pageCount} className='text-center' value={currentPage} onChange={handleInputChange} onBlur={handleGoToPage} />
-        {' '}of {pageCount}
+        {' '} of {pageCount}
       </Typography>
       <Button onClick={handleNextPage} className={`text-black text-lg ${currentPage === pageCount ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`} disabled={currentPage === pageCount}>
         <MdKeyboardArrowRight/>
